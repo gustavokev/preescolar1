@@ -1,6 +1,6 @@
 <div class="container">
 <section class="bg-info main row">
-	
+
 	<aside class="col-md-2 text-center">
 	<h2 class="bg-danger">MENU</h2>
 	<br>
@@ -21,20 +21,24 @@
 
 		<p><a class="btn btn-info" href="<?php echo base_url() ?>">Inicio</a>
 		<a class="btn btn-success" href="<?php echo base_url('docentes/Docentes/registrar') ?>" title="">Registrar Docente</a>
-    
+
 			<input class="btn btn-success" type="submit" value="buscar">
 			<input class="form-control-static" type="text" name="busqueda">
 
 		</form>
 </div>
 
-		
 			<div class="text-center">
 				<h3 class="text-danger"><u>Docentes Principales: </u></h3>
 			</div>
 		<div class="table-responsive">
+<<<<<<<
 			<table class="table table-bordered table-hover table-condensed">
 	
+=======
+			<table class="table table-responsive table-bordered table-hover table-condensed">
+
+>>>>>>>
 		<tr class="danger">
 			<th class="text-center"># ID</th>
 			<th class="text-center">Cedula</th>
@@ -106,7 +110,16 @@
 			<td class="success text-right"><?php echo $docentes->telefono?></td>
 			<td class="active text-right"><?php echo $docentes->celular?></td>
 			<td class="info text-center"><?php echo $docentes->email?></td>
+<<<<<<<
 			
+=======
+			<td class="info text-center"><?php echo $docentes->estatus?></td>
+			<td class="info text-center"><?php echo $docentes->estado?></td>
+			<td class="info text-center"><?php echo $docentes->municipio?></td>
+			<td class="info text-center"><?php echo $docentes->parroquia?></td>
+			<td class="info text-center"><?php echo $docentes->direccion?></td>
+
+>>>>>>>
 			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('docentes/Docentes/modificar/'.$docentes->id) ?>">Editar</a></td>
 			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('docentes/Docentes/eliminar/'.$docentes->id) ?>">Eliminar</a></td>
 		</tr>
@@ -169,5 +182,5 @@
 		</div>
 	</div>
 </div>
-	
+
 
