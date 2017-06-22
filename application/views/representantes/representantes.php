@@ -1,5 +1,7 @@
-<div class="container">
-<section class="bg-info main row">
+
+
+<div id="" class="container">
+<section style="background-color: rgba(0, 0, 200, 0.3)" class="bg-info main row">
 	
 	<aside class="col-md-2 text-center">
 	<h2 class="bg-danger">MENU</h2>
@@ -30,7 +32,7 @@
 
 		
 			<div class="text-center">
-				<h3 class="text-danger"><u>Representantes Principales: </u></h3>
+				<h3 class=""><u>Representantes Principales: </u></h3>
 			</div>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed">
@@ -75,7 +77,7 @@
 		</div>
 
 			<div class="text-center">
-				<h3 class="text-danger"><u>Representantes Secundarios: </u></h3>
+				<h3 class=""><u>Representantes Secundarios: </u></h3>
 			</div>
 		<div class="table-responsive text-center">
 			<table class="table table-bordered table-hover table-condensed">
@@ -120,7 +122,7 @@
 		</div>
 
 			<div class="text-center">
-				<h3 class="text-danger"><u>Representantes Autorizados: </u></h3>
+				<h3 class=""><u>Representantes Autorizados: </u></h3>
 			</div>
 		<div class="table-responsive text-center">
 			<table class="table table-bordered table-hover table-condensed">
@@ -169,5 +171,4 @@
 		</div>
 	</div>
 </div>
-	
 
