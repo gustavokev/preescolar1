@@ -26,18 +26,21 @@ class Representantes extends CI_Controller {
 	}
 
 	public function registrar()
-    {	
+    {
         $this->data['titulo'] = 'Registrar';
         $this->data['action'] = 'representantes/Representantes/guardar';
         $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('representantes/registro', $this->data);
         $this->load->view('footer');
-        
+
     }
 
     public function guardar()
     {
+
+        echo 'fff';
+        exit;
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');
@@ -70,7 +73,7 @@ class Representantes extends CI_Controller {
         $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('representantes/registro', $this->data);
-		$this->load->view('footer'); 
+		$this->load->view('footer');
     }
 
     public function editar()
@@ -87,7 +90,7 @@ class Representantes extends CI_Controller {
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
         $direccion = $this->input->post('direccion');
-        
+
         $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('representantes/Representantes'));

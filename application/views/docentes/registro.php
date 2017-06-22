@@ -41,7 +41,7 @@
             $parroquias_id = $docentes->parroquias_id;
             $parroquia = $docentes->parroquia;
             $direccion = $docentes->direccion;
-            
+
             ?>
             <input type="hidden" name="id" value="<?php echo $id?>">
 
@@ -68,7 +68,7 @@
             </div>
 
         <label for="estados_id" class="control-label text-info">Estado: </label>
-            <div class="form-group has-success"> 
+            <div class="form-group has-success">
                 <em><select name="estados_id" id="estados_id" class="form-control">
                     <option class="text-primary bg-success" value="<?php echo $estados_id?>">Selecciona: <?php echo $estado?></option>
                         <option class="bg-danger text-center text-danger" value="">Nuevo Estado:</option>
@@ -114,7 +114,7 @@
                     <option value="d3">Docente Terceario</option>
                 </select></em>
             </div>
-            
+
         <label for="celular" class="control-label text-info">Teléfono Celular: </label>
             <div class="form-group has-success">
                 <em><input type="text" class="form-control" id="celular" name="celular" value="<?php echo $celular?>" placeholder="Teléfono Celular"></em>
@@ -133,7 +133,7 @@
         </div>
 
     <div class="row">
-            
+
         <div class="col-md-3 col-md-offset-2">
             <button type="submit" class="btn btn-success btn-block active">Guardar</button>
         </div>
@@ -155,8 +155,5 @@
     ?>
 
         <br></div>
-    </div>  
-</div>  
-
-    
-      
+    </div>
+</div>
