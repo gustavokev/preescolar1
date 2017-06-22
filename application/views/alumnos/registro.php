@@ -1,11 +1,16 @@
 
 <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css') ?>">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+   
 
-<div class="container text-center bg-success">
-<h2 class="text-danger">Alumno:</h2>
-<div class="container">
+<div style="background-color: rgba(0, 0, 200, 0.4)" class="container">
 
-    <form class="form-horizontal" action="<?php echo base_url($action) ?>" method="post">
+<div class="container text-center">
+    <h2 class="text-danger"><u>Alumno:</u></h2>
+</div> 
+
+
+    <form class="form-horizontal" id="frmalumno" action="<?php echo base_url($action) ?>" method="post">
         <?php
         $nombre_al = '';
         $apellido_al = '';
@@ -30,70 +35,66 @@
         }
         ?>
 
-
     <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <label for="nombre_al" class="control-label text-danger">Nombre: </label>
+                <div class="form-group">
+                    <em><input type="text" class="form-control" id="nombre_al" name="nombre_al" value="<?php echo $nombre_al?>" placeholder="Nombre:"></em>
+                </div>
 
-    <div class="col-md-3 col-md-offset-2">
-        <label for="nombre_al" class="control-label text-info">Nombre: </label>
-            <div class="form-group has-success">
-                <em><input type="text" class="form-control" id="nombre_al" name="nombre_al" value="<?php echo $nombre_al?>" placeholder="Cedula:"></em>
+            <label for="apellido_al" class="control-label text-danger">Apellido: </label>
+                <div class="form-group">
+                    <em><input type="text" class="form-control" id="apellido_al" name="apellido_al" value="<?php echo $apellido_al?>" placeholder="Apellido"></em>
+                </div>
+
+            <label for="fecha_nac" class="control-label text-danger">Fecha de Nacimiento: </label>
+                <div class="form-group">
+                    <em><input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="<?php echo $fecha_nac?>" placeholder="Fecha de Nacimiento"></em>
+                </div>
             </div>
 
-        <label for="nombre_al" class="control-label text-info">Apellido: </label>
-            <div class="form-group has-success">
-                <em><input type="text" class="form-control" id="apellido_al" name="apellido_al" value="<?php echo $apellido_al?>" placeholder="Apellido"></em>
-            </div>
+        <div class="col-md-3 col-md-offset-2">
+            <label for="sexo" class="control-label text-danger">Sexo: </label>
+                <div class="form-group">
+                    <em><select name="sexo" id="sexo" class="form-control">
+                        <option class="text-primary bg-success" value="">Selecionar: <?php echo $sexo?></option>
+                        <option class="bg-danger text-center text-danger" value="f">femenino</option>
+                        <option class="bg-danger text-center text-info" value="m">masculino</option>
+                    </select></em>
+                </div>
 
-        <label for="fecha_nac" class="control-label text-info">Fecha de Nacimiento: </label>
-            <div class="form-group has-success">
-                <em><input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="<?php echo $fecha_nac?>" placeholder="Teléfono Local:"></em>
-            </div>
-            </div>
-
-            <div class="col-md-3 col-md-offset-2">
-    
-        <label for="sexo" class="control-label text-info">Sexo: </label>
-            <div class="form-group has-success">
-                <em><select name="sexo" id="sexo" class="form-control">
-                    <option value="0">Selecionar: <?php echo $sexo?></option>
-                    <option value="f">femenino</option>
-                    <option value="m">masculino</option>
-                </select></em>
-            </div>
-
-        <label for="estados_id" class="control-label text-info"><small>Lugar de Nacimiento: </small></label>
-        <div class="form-group has-success">
-            <em><select name="estados_id" id="estados_id" class="form-control">
-                    <option class="text-primary bg-success" value="<?php echo $estados_id?>">Selecciona: <?php echo $estado?></option>
-                        <option class="bg-danger text-center text-danger" value="">Seleccionar Nuevo Estado:</option>
-                    <?php
-                    foreach ($estados as $estado) {
-                        ?>
-                        <option class="bg-warning" value="<?php echo $estado->id; ?>"><?php echo $estado->estado ?></option>
+            <label for="estados_id" class="control-label text-danger"><small>Lugar de Nacimiento: </small></label>
+                <div class="form-group">
+                    <em><select name="estados_id" id="estados_id" class="form-control">
+                        <option class="text-primary bg-success" value="<?php echo $estados_id?>">Selecciona: <?php echo $estado?></option>
+                            <option class="bg-danger text-center text-danger" value="">Seleccionar Nuevo Estado:</option>
                         <?php
-                        }
-                    ?>
-            </select></em>
-             </div>
+                        foreach ($estados as $estado) {
+                            ?>
+                            <option class="bg-warning" value="<?php echo $estado->id; ?>"><?php echo $estado->estado ?></option>
+                            <?php
+                            }
+                        ?>
+                    </select></em>
+                 </div>
 
-             <label for="estados_id" class="control-label text-info"></label>
-        <div class="form-group has-success">
-            <em><select name="municipios_id" id="municipios_id" class="form-control">
-                <option class="text-primary bg-success" value="<?php echo $municipios_id?>">Selecciona: <?php echo $municipio?></option>
-                </select></em>
+            <label for="municipios_id" class="control-label text-danger"></label>
+                <div class="form-group">
+                    <em><select name="municipios_id" id="municipios_id" class="form-control">
+                        <option class="text-primary bg-success" value="<?php echo $municipios_id?>">Selecciona: <?php echo $municipio?></option>
+                        </select></em>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block"><img width="150" src="<?php echo base_url('imagenes/botonGuardar.png') ?>" alt=""></button>
+                    <a class="btn btn-block" href="<?php echo base_url('alumnos/Alumnos')?>"><img width="170" src="<?php echo base_url('imagenes/BOTON_VOLVER_MENU3.png') ?>" alt=""></a>
+                </div>
             </div>
         </div>
-
-    <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
-            <button type="submit" class="btn btn-success btn-block">Guardar</button>
-            <a class="btn btn-primary btn-block" href="<?php echo base_url('alumnos/Alumnos')?>">Volver</a>
-        </div>
-    </div>
-</div>
-
     </form>
-    
+</div>    
     <?php
     if(isset($error)){
         ?>
@@ -102,8 +103,31 @@
 
        }
     ?>
-</div>
-</div>
 
-
+<script type="text/javascript">
+        $('#guardar').click(function(){
+            if($('#nombre_al').val() == ''){
+                alert('Debe ingresar el Nombre');
+                $('#nombre_al').focus();
+            }else if($('#apellido_al').val() == ''){
+                alert('Debe ingresar el Apellido');
+                $('#apellido_al').focus();
+            }else if($('#sexo').val() == ''){
+                alert('Debe ingresar el Sexo');
+                $('#sexo').focus();
+            }else if($('#estados_id').val() == ''){
+                alert('Debe ingresar el Estado');
+                $('#estados_id').focus();
+            }else if($('#municipios_id').val() == ''){
+                alert('Debe ingresar el Municipio');
+                $('#municipios_id').focus();
+            }else if($('#fecha_nac').val() == ''){
+                alert('Debe ingresar la Fecha de Nacimiento');
+                $('#fecha_nac').focus();
+            }else{
+                //alert('Enviar');
+                $('#frmalumno').submit();
+            }
+        })
+    </script>
 

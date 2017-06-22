@@ -1,8 +1,6 @@
 
 <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css') ?>">
-<div class="container text-center">
-<h2>Alumno:</h2>
-</div>
+
 <div class="container">
 
         <?php
@@ -21,59 +19,57 @@
             <?php
         }
         ?>
-	<div class="row">
-	
-    <div class="form-group has-success col-md-3">
-        <label for="nombre_al" class="control-label">Cédula Escolar: 
-            <h3><?php echo $cedula_escolar."-".$cedula?></h3>
-        </label>    
-    </div>
 
-    <div class="form-group has-success col-md-3">
-        <label for="nombre_al" class="control-label">Nombre: 
-            <h3><?php echo mayusculas1($nombre_al)?></h3>
-        </label>    
-    </div>
+    <div style="background-color: rgba(0, 0, 200, 0.4)" class="row"><br>
+    	<div class="col-md-4">
+            <div class="form-group has-success bg-info text-center">
+                <label for="nombre_al" class="control-label">Cédula Escolar: 
+                    <h3><?php echo $cedula_escolar."-".$cedula?></h3>
+                </label>    
+            </div>
 
-    <div class="form-group has-warning col-md-3">
-        <label for="apellido_al" class="control-label">Apellido: 
-            <h3><?php echo mayusculas($apellido_al)?></h3>
-        </label>
-    </div>
+            <div class="form-group has-success bg-danger text-center">
+                <label for="nombre_al" class="control-label">Nombre y Apellido: 
+                    <h3><?php echo mayusculas1($nombre_al)?> <?php echo mayusculas($apellido_al)?></h3>
+                </label>    
+            </div>
+        </div>
 
-    <div class="form-group has-error col-md-3">
-        <label for="fecha_nac" class="control-label"><small>Fecha de Nacimiento: </small>
-            <h3><?php echo dateformat($fecha_nac)?></h3>
-        </label>
-    </div>
+        <div class="col-md-4">
+            <div class="form-group has-error bg-danger text-center">
+                <label for="fecha_nac" class="control-label"><small>Fecha de Nacimiento: </small>
+                    <h3><?php echo dateformat($fecha_nac)?></h3>
+                </label>
+            </div>
 
-    <div class="form-group has-error col-md-3">
-        <label for="nombre_re" class="control-label"><small>Nombre de Representante: </small>
-            <h3><?php echo mayusculas($nombre_re)?></h3>
-        </label>
-    </div>
-    
-    <div class="form-group has-success col-md-3">
-        <label for="sexo" class="control-label">Sexo: 
-            <h3><?php echo $sexo?></h3>
-        </label>
-    </div>
+            <div class="form-group has-error bg-info text-center">
+                <label for="nombre_re" class="control-label"><small>Nombre de Representante: </small>
+                    <h3><?php echo mayusculas($nombre_re)?></h3>
+                </label>
+            </div>
+        </div>
 
-    <div class="form-group has-success col-md-3">
-        <label for="estados_id" class="control-label">Lugar de Nacimiento: 
-            <h4><?php echo "Estado ".mayusculas1($estado)?></h4>
-            <h4><?php echo "Municipio ".mayusculas1($municipio)?></h4>
-        </label>
-    </div>
+        <div class="col-md-4">
+            <div class="form-group has-success bg-warning text-center">
+                <label for="sexo" class="control-label">Sexo: 
+                    <h3><?php echo $sexo?></h3>
+                </label>
+            </div>
+          
+            <div class="form-group has-success bg-danger text-center">
+                <label for="estados_id" class="control-label">Lugar de Nacimiento: 
+                    <h4><?php echo "Estado ".mayusculas1($estado)?></h4>
+                    <h4><?php echo "Municipio ".mayusculas1($municipio)?></h4>
+                </label>
+            </div>
+        </div>
 
-    </div>
-
-	<div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
-            <a class="btn btn-primary btn-block" href="<?php echo base_url('alumnos/Alumnos')?>">Principal</a>
+    	<div class="form-group">
+            <div class="col-md-4 col-md-offset-4">
+                <a class="btn btn-block" href="<?php echo base_url('alumnos/Alumnos')?>"><img width="170" src="<?php echo base_url('imagenes/BOTON_VOLVER_MENU3.png') ?>" alt=""></a>
+            </div>
         </div>
     </div>
-	
 </div>
 
 

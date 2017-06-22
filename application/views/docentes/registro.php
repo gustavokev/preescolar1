@@ -4,11 +4,11 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<div class="container text-center bg-success">
+<div style="background-color: rgba(0, 0, 200, 0.3)" class="container text-center bg-success">
 <h2 class="text-danger">Docente:</h2>
 <div class="container">
 
-    <form class="form-horizontal" action="<?php echo base_url($action) ?>" method="post">
+    <form class="form-horizontal" id="frmdocente" action="<?php echo base_url($action) ?>" method="post">
 
         <?php
         $cedula = '';
@@ -122,8 +122,7 @@
 
         <label for="direccion" class="control-label text-info">Direccion:</label>
             <div class="form-group has-success">
-                <em><textarea rows="5" name="direccion" id="direccion" class="form-control" placeholder="Escriba nombre de Calle y N° de casa:"><?php echo $direccion?>
-                </textarea></em>
+                <em><textarea rows="5" name="direccion" id="direccion" class="form-control" placeholder="Escriba nombre de Calle y N° de casa:"><?php echo $direccion?></textarea></em>
             </div>
 
         <label for="email" class="control-label text-info">Correo: </label>
@@ -135,7 +134,7 @@
     <div class="row">
 
         <div class="col-md-3 col-md-offset-2">
-            <button type="submit" class="btn btn-success btn-block active">Guardar</button>
+            <button type="button"  id="guardar" class="btn btn-success btn-block active">Guardar</button>
         </div>
 
         <div class="col-md-3 col-md-offset-1">
@@ -157,3 +156,33 @@
         <br></div>
     </div>
 </div>
+
+<script type="text/javascript">
+        $('#guardar').click(function(){
+            if($('#cedula').val() == ''){
+                alert('Debe ingresar la Cedula');
+                $('#cedula').focus();
+            }else if($('#nombre_re').val() == ''){
+                alert('Debe ingresar el Nombre');
+                $('#nombre_re').focus();
+            }else if($('#apellido_re').val() == ''){
+                alert('Debe ingresar el Apellido');
+                $('#apellido_re').focus();
+            }else if($('#estados_id').val() == ''){
+                alert('Debe ingresar el Estado');
+                $('#estados_id').focus();
+            }else if($('#municipios_id').val() == ''){
+                alert('Debe ingresar el Municipio');
+                $('#municipios_id').focus();
+            }else if($('#parroquias_id').val() == ''){
+                alert('Debe ingresar el Sector');
+                $('#parroquias_id').focus();
+            }else if($('#direccion').val() == ''){
+                alert('Debe ingresar Nombre de calle y N° de casa');
+                $('#direccion').focus();
+            }else{
+                //alert('Enviar');
+                $('#frmdocente').submit();
+            }
+        })
+    </script>

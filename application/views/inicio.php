@@ -1,11 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid"><div class="col-md-5"></div>
+<img class="col-md-2" width="100" src="<?php echo base_url('imagenes/bienvenidosp.gif') ?>" alt="">
 	<ul class="nav nav-pills pull-right">
 	    <li class="active"><a href="#">Home</a></li>
-	    <li><a href="#">About</a></li>
-	    <li><a href="#">Projects</a></li>
-	    <li><a href="#">Contact</a></li>
-	    <li><a href="#">Blog</a></li>
-	    <li><a href="#">Home</a></li>
 	    <li><a href="#">About</a></li>
 	    <li><a href="#">Projects</a></li>
 	    <li><a href="#">Contact</a></li>
@@ -21,11 +17,8 @@
 	<div class="col-md-2">
 		<aside class="">
 
-			<div id="aside" class="col-md-12"><br>
-				<video class="video-responsive img-circle" height="" width="100" autoplay="true" loop="true">
-				<source src="//perform.tcsrv.com/video/28/283812b2-ca77-4bfb-b4da-97e1ee150dda.mp4" type="video/mp4">
-			</video>
-			
+			<div id="aside" class="col-md-12 text-center"><br>
+				<p><img width="100" src="<?php echo base_url('imagenes/Menu-Verde-89740.gif') ?>" alt=""></p>
 			
 				<p><a class="btn btn-block btn-success" href="<?php echo base_url('alumnos/Alumnos') ?>">Alumnos</a>
 			<a class="btn btn-block btn-success" href="<?php echo base_url('representantes/Representantes') ?>"><small>Representantes</small></a>
@@ -75,7 +68,7 @@
 			</div>
 
 		<div class="col-md-3">
-	    	<img width="170" class="" height="390" src="imagenes/pensamiento.jpg" alt="">
+	    	<img width="170" class="" height="390" src="imagenes/tarea1.jpg" alt="">
 	    </div>
 
 	</div>

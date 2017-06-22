@@ -17,9 +17,7 @@ class Alumnos extends CI_Controller {
     {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $this->data['titulo'] = 'Alumnos';
-        $this->data['listar1'] = $this->alumnos->listar1();
-        $this->data['listar2'] = $this->alumnos->listar2();
-        $this->data['listar3'] = $this->alumnos->listar3();
+        $this->data['listar'] = $this->alumnos->listar();
         $this->load->view('header', $this->data);
         $this->load->view('alumnos/alumnos');
         $this->load->view('footer');
@@ -48,6 +46,8 @@ class Alumnos extends CI_Controller {
 
     public function guardar()
     {
+        //echo 'fff';
+        //exit;
         $nombre_al = $this->input->post('nombre_al');
         $apellido_al = $this->input->post('apellido_al');
         $fecha_nac = $this->input->post('fecha_nac');

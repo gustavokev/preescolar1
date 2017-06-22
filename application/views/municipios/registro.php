@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css') ?>">
-<div class="container text-center">
+<div style="background-color: rgba(0, 0, 200, 0.3)" class="container text-center">
 <h2>Municipios:</h2>
 <div class="container">
     <form class="form-horizontal" action="<?php echo base_url($action) ?>" method="post">

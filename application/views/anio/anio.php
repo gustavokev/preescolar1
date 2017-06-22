@@ -1,5 +1,5 @@
 <div class="container">
-<section class="bg-info main row">
+<section style="background-color: rgba(0, 0, 200, 0.3)" class="bg-info main row">
 	
 	<aside class="col-md-2 text-center">
 	<h2 class="bg-danger">MENU</h2>
