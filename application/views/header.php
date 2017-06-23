@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta name="viewport" content="width=device-width, user-scalable=no, inicial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css') ?>">
 </head>
-<body background="<?php echo base_url('imagenes/chicos.jpg') ?>" id="fondo">
+<body background="<!-- <?php //echo base_url('imagenes/chicos.jpg') ?> -->" id="fondo">
 
 <header>
 	<div class="container-fluid text-center">

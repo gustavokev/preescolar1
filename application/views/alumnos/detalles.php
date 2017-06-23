@@ -11,6 +11,7 @@
             $apellido_al = $alumnos->apellido_al;
             $fecha_nac = $alumnos->fecha_nac;
             $nombre_re = $alumnos->nombre_re;
+            $apellido_re = $alumnos->apellido_re;
             $sexo = $alumnos->sexo;
             $estado = $alumnos->estado;
             $municipio = $alumnos->municipio;
@@ -37,14 +38,14 @@
 
         <div class="col-md-4">
             <div class="form-group has-error bg-danger text-center">
-                <label for="fecha_nac" class="control-label"><small>Fecha de Nacimiento: </small>
+                <label for="fecha_nac" class="control-label">Fecha de Nacimiento: 
                     <h3><?php echo dateformat($fecha_nac)?></h3>
                 </label>
             </div>
 
             <div class="form-group has-error bg-info text-center">
-                <label for="nombre_re" class="control-label"><small>Nombre de Representante: </small>
-                    <h3><?php echo mayusculas($nombre_re)?></h3>
+                <label for="nombre_re" class="control-label">Nombre de Representante: 
+                    <h3><?php echo mayusculas($nombre_re." ".$apellido_re)?></h3>
                 </label>
             </div>
         </div>

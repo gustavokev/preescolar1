@@ -1,12 +1,16 @@
-<div class="container-fluid"><div class="col-md-5"></div>
-<img class="col-md-2" width="100" src="<?php echo base_url('imagenes/bienvenidosp.gif') ?>" alt="">
-	<ul class="nav nav-pills pull-right">
-	    <li class="active"><a href="#">Home</a></li>
-	    <li><a href="#">About</a></li>
-	    <li><a href="#">Projects</a></li>
-	    <li><a href="#">Contact</a></li>
-	    <li><a href="#">Blog</a></li>
+<div class="container-fluid"><div class="col-md-4"></div>
+<div>
+	<img class="col-md-3" width="130" src="<?php echo base_url('imagenes/bienvenidosp.gif') ?>" alt="">
+</div>
+	<div>
+		<ul class="nav nav-pills pull-right">
+	    <li class="active"><a href="#">Direccion</a></li>
+	    <li><a href="#"><small>Facilitadores</small></a></li>
+	    <li><a href="#"><small>Especialistas</small></a></li>
+	    <li><a href="#">Contactos</a></li>
+	    <li><a href="#">Otros</a></li>
   	</ul>
+	</div>
 </div>
 
 <div class="container">

@@ -44,16 +44,16 @@ class AlumnosModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, ad.cedula_escolar, d.cedula, d.nombre_re, d.apellido_re, e.estado, m.municipio');
+        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, e.estado, m.municipio, ad.cedula_escolar, d.cedula, d.nombre_re, d.apellido_re');
         $this->db->from($this->tabla.' AS al');
         $this->db->join('grado_seccion_anio AS gsa', 'al.gsa_id=gsa.id', 'inner');
         $this->db->join('grados AS g', 'gsa.grado_id=g.id', 'inner');
         $this->db->join('secciones AS s', 'gsa.seccion_id=s.id', 'inner');
         $this->db->join('anio_escolar AS ae', 'gsa.anio_id=ae.id', 'inner');
-        $this->db->join('alumnos_datos AS ad', 'al.id=ad.alumnos_id', 'inner');
-        $this->db->join('datos AS d', 'ad.datos_id=d.id', 'inner');
         $this->db->join('estados AS e', 'e.id=al.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=al.municipios_id', 'inner');
+        $this->db->join('alumnos_datos AS ad', 'ad.id=al.alumnos_datos_id', 'inner');
+        $this->db->join('datos AS d', 'd.id=ad.datos_id', 'inner');
         $this->db->where('al.id', $id);
         $query = $this->db->get();
         return $query->row();

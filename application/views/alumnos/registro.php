@@ -18,8 +18,11 @@
         $sexo = '';
         $estado = '';
         $estados_id = '';
-        $municipios_id = '';
         $municipio = '';
+        $municipios_id = '';
+        $grado_id = '';
+        $seccion_id = '';
+        $anio_id = '';
         if(isset($id)){
             $nombre_al = $alumnos->nombre_al;
             $apellido_al = $alumnos->apellido_al;
@@ -27,8 +30,11 @@
             $sexo = $alumnos->sexo;
             $estados_id = $alumnos->estados_id;
             $estado = $alumnos->estado;
-            $municipios_id = $alumnos->municipios_id;
             $municipio = $alumnos->municipio;
+            $municipios_id = $alumnos->municipios_id;
+            $grado_id = $alumnos->grado_id;
+            $seccion_id = $alumnos->seccion_id;
+            $anio_id = $alumnos->anio_id;
             ?>
             <input type="hidden" name="id" value="<?php echo $id?>">
             <?php
@@ -58,8 +64,8 @@
                 <div class="form-group">
                     <em><select name="sexo" id="sexo" class="form-control">
                         <option class="text-primary bg-success" value="">Selecionar: <?php echo $sexo?></option>
-                        <option class="bg-danger text-center text-danger" value="f">femenino</option>
-                        <option class="bg-danger text-center text-info" value="m">masculino</option>
+                        <option class="bg-danger text-center text-danger" value="femenino">femenino</option>
+                        <option class="bg-danger text-center text-info" value="masculino">masculino</option>
                     </select></em>
                 </div>
 

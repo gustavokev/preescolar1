@@ -88,7 +88,10 @@ class Alumnos extends CI_Controller {
         $sexo = $this->input->post('sexo');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
-        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id);
+        $grado_id = $this->input->post('grado_id');
+        $seccion_id = $this->input->post('seccion_id');
+        $anio_id = $this->input->post('anio_id');
+        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id, $grado_id, $seccion_id, $anio_id);
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{
