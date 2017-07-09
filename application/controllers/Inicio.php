@@ -11,12 +11,15 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		$this->data['titulo'] = 'Inicio';
-		$this->data['listar'] = $this->inicio->listar(); //print_r($this->data); exit;
-		$this->load->view('header', $this->data);
-		$this->load->view('inicio');
-		$this->load->view('footer');
+		$titulo = 'Inicio';
+        $this->twig->display('inicio/inicio', compact('titulo'));
 	}
+
+    public function hola()
+    {
+        $this->data['titulo'] = 'Inicio';
+        $this->twig->display('inicio/hola', compact('title'),$this->data);
+    }
 }
 
 

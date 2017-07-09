@@ -1,0 +1,35 @@
+
+
+
+#container
+{
+	/*background-image: url(imagenes/chicos.jpg);*/
+	/*background-color: #5AE36E;*/
+}
+
+#fondo
+{
+	
+
+	background-color: #5AE36E;
+}
+
+#aside
+{
+	background-color: #4B5BDE;
+}
+
+#article
+{
+	background-color: #43C270;
+}
+
+#text {
+    z-index:100;
+    position:absolute;    
+    color:red;
+    font-size:100px;
+    font-weight:bold;
+    left:150px;
+    top:350px;
+}

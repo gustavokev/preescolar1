@@ -13,32 +13,29 @@ class Representantes extends CI_Controller {
 
     }
 
-	public function index()
-	{
-        $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-		$this->data['titulo'] = 'Representantes';
-        $this->data['listar'] = $this->representantes->listar();
-		$this->load->view('header', $this->data);
-        $this->load->view('representantes/representantes');
-		$this->load->view('footer');
-	}
-
-	public function registrar()
+    public function index()
     {
-        $this->data['titulo'] = 'Registrar';
-        $this->data['action'] = 'representantes/Representantes/guardar';
-        $this->data['estados'] = $this->estados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('representantes/registro', $this->data);
-        $this->load->view('footer');
+        $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
+        $titulo = 'Representantes';
+        $listar = $this->representantes->listar();
+		/*$this->load->view('header', $this->data);
+        $this->load->view('representantes/representantes');
+        $this->load->view('footer');*/
+        $this->twig->display('representantes/representantes', compact('titulo', 'listar'));
+    }
 
+    public function registrar()
+    {
+        $titulo = 'Registrar';
+        $action = 'representantes/Representantes/guardar';
+        $estados = $this->estados->listar();
+        $this->twig->display('representantes/registro', compact('titulo', 'action', 'estados'));
     }
 
     public function guardar()
     {
 
-        echo 'fff';
-        exit;
+
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');
@@ -54,24 +51,24 @@ class Representantes extends CI_Controller {
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
-            $this->data['error'] = 'error';
-        	$this->data['action'] = 'representantes/Representantes/guardar';
-            $this->data['url']   = 'representantes/Representantes';
-            $this->data['titulo'] = 'Registrar';
-            $this->load->view('representantes/registro', $this->data);
+
+            $error =  'error';
+            $action= 'representantes/Representantes/guardar';
+            $url =  'representantes/Representantes';
+            $titulo = 'Registrar';
+            $this->twig->display('representantes/registro', compact('titulo', 'action', 'estados', 'url', 'error'));
         }
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'representantes/Representantes/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['representantes'] = $this->representantes->buscar($id);
-        $this->data['estados'] = $this->estados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('representantes/registro', $this->data);
-		$this->load->view('footer');
+        $id    = $id;
+        $action = 'representantes/Representantes/editar';
+        $titulo = 'Modificar';
+        $representantes = $this->representantes->buscar($id);
+        $estados = $this->estados->listar();
+
+        $this->twig->display('representantes/registro', compact('titulo', 'action', 'estados', 'representantes'));
     }
 
     public function editar()
@@ -93,10 +90,10 @@ class Representantes extends CI_Controller {
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'representantes/Representantes/guardar';
-            $this->data['url']   = 'representantes/Representantes';
+            $metodo= 'guardar';
+            $error = 'error';
+            $action= 'representantes/Representantes/guardar';
+            $url  =  'representantes/Representantes';
         }
     }
 
@@ -116,9 +113,9 @@ class Representantes extends CI_Controller {
             $this->buscar = '';
         }
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-        $this->data['representantes'] = $this->representantes->busca($this->buscar);
+        $represeantes = $this->representantes->busca($this->buscar);
 
-        $this->data['titulo'] = 'Busqueda de Representante';
+        $titulo = 'Busqueda de Representante';
         $this->load->view('header', $this->data);
         $this->load->view('representantes/buscar');
         $this->load->view('footer');

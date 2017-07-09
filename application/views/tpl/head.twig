@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <title>{{ titulo }}</title>
+    <link href="{{ base_url('css/bootstrap.css') }}" rel="stylesheet" media="screen"/>
+    <link href="{{ base_url('css/font-awesome.min.css') }}" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            overflow-x: hidden;
+        }
+        body {
+            padding-top: 70px;
+        }
+        footer {
+            padding: 30px 0;
+        }
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+ @media screen and (max-width: 767px) {
+     .row-offcanvas {
+         position: relative;
+         -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+         transition: all .25s ease-out;
+     }
+
+     .sidebar-offcanvas {
+         position: absolute;
+         width: 60%; /* 6 columns */
+         display: none;
+     }
+
+     .row-offcanvas-right {
+         right: 0;
+     }
+
+     .row-offcanvas-right.active
+     .sidebar-offcanvas {
+         display: block;
+         right: 0;
+         top: 0;
+         z-index: 1;
+     }
+ }
+</style>
+</head>

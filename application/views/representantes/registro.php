@@ -154,36 +154,3 @@
             <br></div>
         </div>
     </div>
-
-
-
-
-    <script type="text/javascript">
-        $('#guardar').click(function(){
-            if($('#cedula').val() == ''){
-                alert('Debe ingresar la Cedula');
-                $('#cedula').focus();
-            }else if($('#nombre_re').val() == ''){
-                alert('Debe ingresar el Nombre');
-                $('#nombre_re').focus();
-            }else if($('#apellido_re').val() == ''){
-                alert('Debe ingresar el Apellido');
-                $('#apellido_re').focus();
-            }else if($('#estados_id').val() == ''){
-                alert('Debe ingresar el Estado');
-                $('#estados_id').focus();
-            }else if($('#municipios_id').val() == ''){
-                alert('Debe ingresar el Municipio');
-                $('#municipios_id').focus();
-            }else if($('#parroquias_id').val() == ''){
-                alert('Debe ingresar el Sector');
-                $('#parroquias_id').focus();
-            }else if($('#direccion').val() == ''){
-                alert('Debe ingresar Nombre de calle y N° de casa');
-                $('#direccion').focus();
-            }else{
-                //alert('Enviar');
-                $('#frmrepresentante').submit();
-            }
-        })
-    </script>

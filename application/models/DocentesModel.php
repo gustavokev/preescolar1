@@ -10,10 +10,10 @@ class DocentesModel extends CI_Model {
     }
     public function listar1()
     {
-        $this->db->select('d.id, 
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->select('d.id,
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, d.direccion, e.estado, m.municipio, p.parroquia');
         $this->db->from($this->tabla.' AS d');
-        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
+
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
         $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
@@ -24,10 +24,10 @@ class DocentesModel extends CI_Model {
 
     public function listar2()
     {
-        $this->db->select('d.id, 
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->select('d.id,
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, d.direccion, e.estado, m.municipio, p.parroquia');
         $this->db->from($this->tabla.' AS d');
-        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
+
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
         $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
@@ -38,10 +38,10 @@ class DocentesModel extends CI_Model {
 
     public function listar3()
     {
-        $this->db->select('d.id, 
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->select('d.id,
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus,  d.direccion, e.estado, m.municipio, p.parroquia');
         $this->db->from($this->tabla.' AS d');
-        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
+
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
         $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
