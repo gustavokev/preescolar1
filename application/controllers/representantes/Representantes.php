@@ -17,9 +17,7 @@ class Representantes extends CI_Controller {
 	{
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
 		$this->data['titulo'] = 'Representantes';
-        $this->data['listar1'] = $this->representantes->listar1();
-        $this->data['listar2'] = $this->representantes->listar2();
-		$this->data['listar3'] = $this->representantes->listar3();
+        $this->data['listar'] = $this->representantes->listar();
 		$this->load->view('header', $this->data);
         $this->load->view('representantes/representantes');
 		$this->load->view('footer');

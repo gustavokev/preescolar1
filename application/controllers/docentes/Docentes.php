@@ -38,6 +38,8 @@ class Docentes extends CI_Controller {
 
     public function guardar()
     {
+        echo 'fff';
+        exit;
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');

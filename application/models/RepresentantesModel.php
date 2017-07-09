@@ -8,7 +8,7 @@ class RepresentantesModel extends CI_Model {
     {
         parent::__construct();
     }
-    public function listar1()
+    public function listar()
     {
         $this->db->select('d.id, 
         d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, al.apellido_al, d.direccion, e.estado, m.municipio, p.parroquia');
@@ -17,35 +17,6 @@ class RepresentantesModel extends CI_Model {
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
         $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
-        $this->db->where('d.estatus', 'r1');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function listar2()
-    {
-        $this->db->select('d.id, 
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, al.apellido_al, d.direccion, e.estado, m.municipio, p.parroquia');
-        $this->db->from($this->tabla.' AS d');
-        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
-        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
-        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
-        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
-        $this->db->where('d.estatus', 'r2');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function listar3()
-    {
-        $this->db->select('d.id, 
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, al.apellido_al, d.direccion, e.estado, m.municipio, p.parroquia');
-        $this->db->from($this->tabla.' AS d');
-        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
-        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
-        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
-        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
-        $this->db->where('d.estatus', 'r3');
         $query = $this->db->get();
         return $query->result();
     }

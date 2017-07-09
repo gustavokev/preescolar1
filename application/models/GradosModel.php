@@ -21,40 +21,30 @@ class GradosModel extends CI_Model
         return $query->result();
     }
 
-    public function guardar($anios_id, $grado)
+    public function guardar($grado, $anios_id)
     {
-        $this->db->select('id');
-        $this->db->where('grado', $grado);
-        $query = $this->db->get($this->tabla);
-
-        if ($query->num_rows() == 0) {
-            $data = ['grado' => $grado];
-            $result = $this->db->insert($this->tabla, $data);
-            if ($result) {
-                $d['anios_id'] = $anios_id;
-                $d['grados_id'] = $this->db->insert_id();
-            }
-        } else {
-
-            $grados_id = $query->row()->id;
-            $this->db->where(array('grados_id'=>$grados_id,'anios_id'=>$anios_id));
-            $query1 = $this->db->get('anios_grados');
-            if ($query1->num_rows() > 1) {
-                return FALSE;
-            }
-            $d['anios_id'] = $anios_id;
-            $d['grados_id'] = $grados_id;
+        $this->db->select('g.id, g.grado, ag.anios_id, ae.anio');
+        $this->db->from($this->tabla.' AS g');
+        $this->db->join('anios_grados AS ag', 'ag.grados_id=g.id', 'inner');
+        $this->db->join('anio_escolar As ae', 'ag.anios_id=ae.id', 'inner');
+        $query = $this->db->get();
+        if($query->num_rows()> 0){
+            return FALSE;
         }
-        $result = $this->db->insert('anios_grados', $d);
-
-        return $result;
+        $data = array(
+            'grado' => $grado,
+            'anios_id' => $anios_id
+            );
+        return $this->db->insert($this->tabla, $data);
     }
 
     public function buscar($id)
     {
-        $this->db->select('grado');
-        $this->db->where('id', $id);
-        $query = $this->db->get($this->tabla);
+        $this->db->select('g.id, g.grado, ag.anios_id, ae.anio');
+        $this->db->from($this->tabla.' AS g');
+        $this->db->join('anios_grados AS ag', 'ag.grados_id=g.id', 'inner');
+        $this->db->join('anio_escolar As ae', 'ag.anios_id=ae.id', 'inner');
+        $query = $this->db->get();
         return $query->row();
     }
 
