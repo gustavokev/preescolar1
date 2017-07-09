@@ -58,7 +58,7 @@
 
 			</table>
 				<div class="col-md-4 col-md-offset-4">
-					<a class="btn-block" href="<?php echo base_url('docentes/Docentes')?>">
+					<a class="btn-block" href="<?php echo base_url('alumnos/Alumnos')?>">
 					<img width="130" src="<?php echo base_url('imagenes/subir-boton.png') ?>" alt=""></a>
 				</div>
 			</div><br>

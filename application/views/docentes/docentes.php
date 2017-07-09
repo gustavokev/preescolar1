@@ -2,7 +2,7 @@
 	<section style="background-color: rgba(0, 0, 200, 0.3)" class="bg-info main row">
 		<div class="col-md-2">
 			<aside class=""><br>
-				<div id="aside" class="col-md-12">
+				<div id="aside" class="col-md-12 text-center">
 					<h2 class=""><img width="100" src="<?php echo base_url('imagenes/Menu_Normal.gif')?>" alt=""></h2>
 					<a class="btn btn-block btn-success" href="<?php echo base_url('alumnos/Alumnos') ?>">Alumnos</a>
 					<a class="btn btn-block btn-success" href="<?php echo base_url('representantes/Representantes') ?>"><small>Representantes</small></a>

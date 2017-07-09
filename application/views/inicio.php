@@ -1,8 +1,5 @@
-<div class="container-fluid"><div class="col-md-4"></div>
-<div>
-	<img class="col-md-3" width="130" src="<?php echo base_url('imagenes/bienvenidosp.gif') ?>" alt="">
-</div>
-	<div>
+<div class="container-fluid">
+	<div class="">
 		<ul class="nav nav-pills pull-right">
 	    <li class="active"><a href="#">Direccion</a></li>
 	    <li><a href="#"><small>Facilitadores</small></a></li>
@@ -10,6 +7,9 @@
 	    <li><a href="#">Contactos</a></li>
 	    <li><a href="#">Otros</a></li>
   	</ul>
+	</div>
+	<div class="col-md-offset-5 ">
+		<img class="col-md-3" width="150" src="<?php echo base_url('imagenes/bienvenidosp.gif') ?>" alt="">
 	</div>
 </div>
 
@@ -32,7 +32,9 @@
 			<a class="btn btn-block btn-success" href="<?php echo base_url('secciones/Secciones') ?>">Secciones</a>
 			<a class="btn btn-block btn-success" href="<?php echo base_url('estados/Estados') ?>">Estados</a>
 			<a class="btn btn-block btn-success" href="<?php echo base_url('municipios/Municipios') ?>">Municipios</a>
-			<a class="btn btn-block btn-success" href="<?php echo base_url('parroquias/Parroquias') ?>">Parroquias</a></p><br>
+			<a class="btn btn-block btn-success" href="<?php echo base_url('parroquias/Parroquias') ?>">Parroquias</a>
+			<a class="btn btn-block btn-success" href="<?php echo base_url('login/Usuarios') ?>">Usuarios</a>
+			<a class="btn btn-block btn-success" href="<?php echo base_url('register/register') ?>">Register</a></p><br>
 			</div>
 			
 	</aside>
