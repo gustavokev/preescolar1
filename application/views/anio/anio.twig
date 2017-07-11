@@ -1,0 +1,34 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+
+		<div class="table-responsive">
+			<a class="btn btn-success" href="{{ base_url('anio/anio/registrar') }}" title="">Registrar Año</a><br>
+			<table class="table table-bordered table-hover table-condensed">
+				<thead>
+					<tr class="danger">
+						<th class="text-center"># ID</th>
+						<th class="text-center">Año</th>
+						<th class="text-center">Editar</th>
+						<th class="text-center">Eliminar</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for anios in listar %}
+						<tr class="">
+				            <td class="active text-right">{{ "%02d"|format(loop.index)}}</td>
+							<td class="success">{{ anios.anio|capitalize}}</td>
+							<td class="active text-center"><a class="btn bg-warning" href="{{ base_url('anio/anio/modificar/' ~ anios.id) }}">Editar</a></td>
+							<td class="active text-center"><a class="btn bg-danger" href="{{ base_url('anio/anio/eliminar/' ~ anios.id) }}">Eliminar</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+				<div class="col-md-4 col-md-offset-4">
+					<a class="btn-block" href="{{ base_url('anio/anio') }}">
+					<img width="130" src="{{ base_url('imagenes/subir-boton.png') }}" alt=""></a>
+				</div>
+			</div><br>
+{% endblock %}
+	

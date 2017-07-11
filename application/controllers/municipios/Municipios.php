@@ -14,21 +14,17 @@ class Municipios extends CI_Controller {
 	public function index()
 	{
         $this->load->helper(array('dateformat'));
-		$this->data['titulo'] = 'Municipios';
-		$this->data['listar'] = $this->municipios->listar();
-		$this->load->view('header', $this->data);
-        $this->load->view('municipios/municipios');
-		$this->load->view('footer');
+		$titulo = 'Municipios';
+		$listar = $this->municipios->listar();
+		$this->twig->display('municipios/municipios', compact('titulo', 'listar'));
 	}
 
 	public function registrar()
     {
-        $this->data['titulo'] = 'Registrar';
-        $this->data['action'] = 'municipios/Municipios/guardar';
-        $this->data['estados'] = $this->estados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('municipios/registro', $this->data);
-		$this->load->view('footer');
+        $titulo = 'Registrar';
+        $action = 'municipios/Municipios/guardar';
+        $estados = $this->estados->listar();
+        $this->twig->display('municipios/registro', compact('titulo', 'action', 'estados'));
     }
 
     public function searchMunEst($estados_id)
@@ -45,24 +41,22 @@ class Municipios extends CI_Controller {
         if($resultado){
             redirect(base_url('municipios/Municipios'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-        	$this->data['action'] = 'municipios/Municipios/guardar';
-            $this->data['url']   = 'municipios/Municipios';
-            $this->data['titulo'] = 'Registro';
-            $this->load->view('municipios/registro', $this->data);
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'municipios/Municipios/guardar';
+            $url   = 'municipios/Municipios';
+            $this->twig->display('anio/registro', compact('titulo', 'action', 'error', 'url'));
         }
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'municipios/Municipios/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['municipios'] = $this->municipios->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('municipios/registro', $this->data);
-		$this->load->view('footer');
+        $id      = $id;
+        $action = 'municipios/Municipios/editar';
+        $titulo = 'Modificar';
+        $municipios = $this->municipios->buscar($id);
+        $estados = $this->estados->listar();
+        $this->twig->display('municipios/registro', compact('action', 'titulo', 'municipios', 'estados'));
     }
 
     public function editar()
@@ -73,16 +67,16 @@ class Municipios extends CI_Controller {
         if($resultado){
             redirect(base_url('municipios/Municipios'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'municipios/Municipios/guardar';
-            $this->data['url']   = 'municipios/Municipios';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'municipios/Municipios/guardar';
+            $url   = 'municipios/Municipios';
         }
     }
 
     public function eliminar($id)
     {
-        $resultado = $this->municipios->eliminar($estados_id, $id);
+        $resultado = $this->municipios->eliminar($id);
         if($resultado){
             redirect(base_url('municipios/Municipios'));
         }

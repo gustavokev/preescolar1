@@ -27,31 +27,12 @@ class MunicipiosModel extends CI_Model {
 
     public function guardar($estados_id, $municipio)
     {
-        $this->db->select('id');
-        $this->db->where('municipio', $municipio);
-        $query = $this->db->get($this->tabla);
-
-        if ($query->num_rows() == 0) {
-            $data = ['municipio' => $municipio];
-            $result = $this->db->insert($this->tabla, $data);
-            if ($result) {
-                $d['estados_id'] = $estados_id;
-                $d['municipio_id'] = $this->db->insert_id();
-            }
-        } else {
-
-            $municipio_id = $query->row()->id;
-            $this->db->where(array('municipio_id'=>$municipio_id,'estados_id'=>$estados_id));
-            $query1 = $this->db->get('direccion');
-            if ($query1->num_rows() > 1) {
-                return FALSE;
-            }
-            $d['estados_id'] = $estados_id;
-            $d['municipio_id'] = $municipio_id;
-        }
-        $result = $this->db->insert('direccion', $d);
-
-        return $result;
+        $data = array(
+            'estados_id' => $estados_id,
+            'municipio' => $municipio
+            );
+        // print_r($data); exit;
+        return $this->db->insert($this->tabla, $data);
     }
 
     public function buscar($id)
@@ -84,26 +65,6 @@ class MunicipiosModel extends CI_Model {
 
     public function eliminar($id)
     {
-        return $this->db->delete($this->tabla, array('estados_id' => $estados_id,
-            'id' => $id));
-    }
-
-    public function getMunicipios($estadoId)
-    {
-        $this->db->select("id,municipio");
-        $this->db->where("idestado", $estadoId);
-        return $this->db->get("municipios")->result();
-    }
-
-    public function getMunicipiosp()
-    {
-        $this->db->select("id,municipio");
-        $municipios = $this->db->get("municipios");
-        $data = array();
-        foreach($municipios->result() as $municipio)
-        {
-            $data[$municipio->id] = $municipio->municipio;
-        }
-        return $data;
+        return $this->db->delete($this->tabla, array('id' => $id));
     }
 }

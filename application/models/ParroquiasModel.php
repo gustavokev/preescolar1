@@ -26,12 +26,6 @@ class ParroquiasModel extends CI_Model {
 
         public function guardar($municipios_id, $parroquia)
     {
-        $this->db->select('id');
-        $this->db->where('parroquia', $parroquia);
-        $query = $this->db->get($this->tabla);
-        if($query->num_rows()> 0){
-            return FALSE;
-        }
         $data = array(
             'municipios_id' => $municipios_id,
             'parroquia' => $parroquia

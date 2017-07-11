@@ -1,0 +1,35 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+
+<div class="table-responsive">
+	<a class="btn btn-success" href="{{ base_url('parroquias/parroquias/registrar') }}" title="">Registrar parroquia</a><br>
+	<table class="table table-bordered table-hover table-condensed">
+		<thead>
+			<tr class="danger">
+				<th class=" text-center"># ID</th>
+				<th class=" text-center">parroquia</th>
+				<th class=" text-center">municipio</th>
+				<th class=" text-center">Editar</th>
+				<th class=" text-center">Eliminar</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for parroquias in listar %}
+				<tr class="">
+		            <td class="active text-right">{{ "%02d"|format(loop.index)}}</td>
+					<td class="success">{{ parroquias.parroquia|capitalize}}</td>
+					<td class="info">{{ parroquias.municipio|capitalize}}</td>
+					
+					<td class="active text-center"><a class="btn bg-warning" href="{{ base_url('parroquias/parroquias/modificar/' ~ parroquias.id) }}">Editar</a></td>
+					<td class="active text-center"><a class="btn bg-danger" href="{{ base_url('parroquias/parroquias/eliminar/' ~ parroquias.id) }}">Eliminar</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="col-md-4 col-md-offset-4">
+		<a class="btn btn-primary btn-block" href="{{ base_url('parroquias/parroquias') }}">Arriba</a>
+	</div>
+</div>
+	
+{% endblock %}

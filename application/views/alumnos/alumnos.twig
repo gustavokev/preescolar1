@@ -1,0 +1,40 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+			<a class="btn btn-success" href="{{ base_url('alumnos/alumnos/registrar') }}" title="">Registrar Alumnos</a><br>
+
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-condensed">
+				<thead>
+					<tr class="danger">
+						<th class="text-center"># ID</th>
+						<th class="text-center">Nombre y Apellido</th>
+						<th class="text-center">Grado y Seccion</th>
+						<th class="text-center">Año</th>
+						<th class="text-center">Detalles</th>
+						<th class="text-center">Editar</th>
+						<th class="text-center">Eliminar</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for alumnos in listar %}
+						<tr class="">
+				            <td class="active text-right">{{ "%02d"|format(loop.index)}}</td>
+							<td class="success">{{ alumnos.nombre_al|capitalize}}  {{ alumnos.apellido_al|capitalize}}</td>
+							<td class="active">{{ alumnos.grado|capitalize}}  {{ alumnos.seccion|capitalize}}</td>
+							<td class="success text-right">{{alumnos.anio}}</td>
+							<td class="active"><a class="btn bg-warning" href="{{ base_url('alumnos/alumnos/detalles/' ~ alumnos.id) }}">Detalles</a></td>
+							<td class="active"><a class="btn bg-warning" href="{{ base_url('alumnos/alumnos/modificar/' ~ alumnos.id) }}">Editar</a></td>
+							<td class="active"><a class="btn bg-danger" href="{{ base_url('alumnos/alumnos/eliminar/' ~ alumnos.id) }}">Eliminar</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+				<div class="col-md-4 col-md-offset-4">
+					<a class="btn-block" href="{{ base_url('alumnos/Alumnos') }}">
+					<img width="130" src="{{ base_url('imagenes/subir-boton.png') }}" alt=""></a>
+				</div>
+			</div><br>
+{% endblock %}
+	

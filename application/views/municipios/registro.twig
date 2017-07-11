@@ -1,0 +1,63 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmmunicipio'} %}
+    {{ form_open(base_url(action), attributes) }}
+
+<div class="form-body">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Estado</label>
+                <select name="estados_id" id="estados_id" class="form-control">
+                    <option value="0">Selecciona: </option>
+                    {% for estado in estados %}
+                        {% set selected = ''%}
+                        {% if estado.id == representantes.estados_id %}
+                            {% set selected = 'selected="selected"'%}
+                        {% endif %}
+                        <option {{selected}} value="{{estado.id}}">{{estado.estado}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Municipio</label>
+                <input type="text" class="form-control" id="municipio" name="municipio" value="{{municipios.municipio|default('')}}" placeholder="Municipio:">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-4 col-md-offset-4">
+            <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+            </button>
+        </div>
+    </div>
+</div>
+
+    {{ form_close() }}
+
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#guardar').click(function(){
+                if($('#municipio').val() == ''){
+                    alert('Debe ingresar el Municipio');
+                    $('#municipio').focus();
+                }else{
+                    // alert('Enviar');
+                    $('#frmmunicipio').submit();
+                }
+            })
+        });
+    </script>
+{% endblock %}
+
+
+
+

@@ -13,20 +13,16 @@ class Anio extends CI_Controller {
 	public function index()
 	{
         $this->load->helper(array('dateformat'));
-		$this->data['titulo'] = 'Año Escolar';
-		$this->data['listar'] = $this->anio->listar();
-		$this->load->view('header', $this->data);
-        $this->load->view('anio/anio');
-		$this->load->view('footer');
+		$titulo = 'Año Escolar';
+		$listar = $this->anio->listar();
+		$this->twig->display('anio/anio', compact('titulo', 'listar'));
 	}
 
 	public function registrar()
     {	
-        $this->data['titulo'] = 'Registro';
-        $this->data['action'] = 'anio/Anio/guardar';
-        $this->load->view('header', $this->data);
-        $this->load->view('anio/registro', $this->data);
-		$this->load->view('footer');
+        $titulo = 'Registro';
+        $action = 'anio/anio/guardar';
+        $this->twig->display('anio/registro', compact('titulo', 'action'));
     }
 
     public function guardar()
@@ -34,26 +30,22 @@ class Anio extends CI_Controller {
         $anio = $this->input->post('anio');
         $resultado = $this->anio->guardar($anio);
         if($resultado){
-            redirect(base_url('anio/Anio'));
+            redirect(base_url('anio/anio'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-        	$this->data['action'] = 'anio/Anio/guardar';
-            $this->data['url']   = 'anio/Anio';
-            $this->data['titulo'] = 'Registro';
-            $this->load->view('anio/registro', $this->data);
+            $error = 'error';
+        	$action = 'anio/anio/guardar';
+            $url   = 'anio/anio';
+            $titulo = 'Registro';
+            $this->twig->display('anio/registro', compact('titulo', 'action', 'error', 'url'));
         }
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'anio/Anio/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['anios'] = $this->anio->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('anio/registro', $this->data);
-		$this->load->view('footer'); 
+        $action = 'anio/anio/editar';
+        $titulo = 'Modificar';
+        $anios = $this->anio->buscar($id);
+        $this->twig->display('anio/registro', compact('titulo', 'action', 'anios')); 
     }
 
     public function editar()
@@ -62,12 +54,12 @@ class Anio extends CI_Controller {
         $anio = $this->input->post('anio');
         $resultado = $this->anio->editar($id, $anio);
         if($resultado){
-            redirect(base_url('anio/Anio'));
+            redirect(base_url('anio/anio'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'anio/Anio/guardar';
-            $this->data['url']   = 'anio/Anio';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'anio/anio/guardar';
+            $url   = 'anio/anio';
         }
     }
 

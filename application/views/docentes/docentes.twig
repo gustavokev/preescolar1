@@ -1,0 +1,41 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+            <a class="btn btn-success" href="{{ base_url('docentes/docentes/registrar') }}" title="">Registrar Docentes</a>
+            <br/>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr class="danger">
+                            <th class="text-center"># ID</th>
+                            <th class="text-center">Cedula</th>
+                            <th class="text-center">Nombre y Apellido</th>
+                            <th class="text-center">Tlf. Celular</th>
+                            <th class="text-center">Tlf. Local</th>
+                            <th class="text-center">Correo Electrónico</th>
+
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for docentes in listar %}
+                            <tr>
+                                <td>{{ "%02d"|format(loop.index)}}</td>
+                                <td>{{ docentes.cedula|number_format(0, '', '.') }}</td>
+                                <td>{{ docentes.nombre_re|capitalize}}  {{ docentes.apellido_re|capitalize}}</td>
+                                <td>{{docentes.telefono}}</td>
+                                <td>{{docentes.celular}}</td>
+                                <td>{{docentes.email}}</td>
+
+                                <td>
+                                    <a class="btn bg-warning" href="{{ base_url('docentes/docentes/modificar/' ~ docentes.id) }}">Editar</a>
+                                </td>
+                                <td>
+                                    <a class="btn bg-danger" href="{{ base_url('docentes/docentes/eliminar/' ~ docentes.id) }}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endblock %}

@@ -26,12 +26,6 @@ class AlumnosModel extends CI_Model {
 
     public function guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id, $alumnos_datos_id, $grado_id, $seccion_id, $anio_id)
     {
-        $this->db->select('id');
-        $this->db->where('nombre_al', $nombre_al);
-        $query = $this->db->get($this->tabla);
-        if($query->num_rows()> 0){
-            return FALSE;
-        }
         $data = array(
             'nombre_al' => $nombre_al,
             'apellido_al' => $apellido_al,

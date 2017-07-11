@@ -14,21 +14,17 @@ class Grados extends CI_Controller
 
     public function index()
     {
-        $this->data['titulo'] = 'Grados';
-        $this->data['listar'] = $this->grados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('grados/grados');
-        $this->load->view('footer');
+        $titulo = 'Grados';
+        $listar = $this->grados->listar();
+        $this->twig->display('grados/grados', compact('titulo', 'listar'));
     }
 
     public function registrar()
     {
-        $this->data['titulo'] = 'Registro';
-        $this->data['action'] = 'grados/Grados/guardar';
-        $this->data['anios'] = $this->anios->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('grados/registro', $this->data);
-        $this->load->view('footer');
+        $titulo = 'Registro';
+        $action = 'grados/grados/guardar';
+        $anios = $this->anios->listar();
+        $this->twig->display('grados/registro', compact('titulo', 'action', 'anios'));
     }
 
     public function guardar()
@@ -36,19 +32,16 @@ class Grados extends CI_Controller
         $anios_id = $this->input->post('anios_id');
         $grado = $this->input->post('grado');
         $result = $this->grados->guardar($anios_id, $grado);
-        redirect('grados/Grados', 'location');
+        redirect('grados/grados', 'location');
 
     }
 
     public function modificar($id)
     {
-        $this->data['id'] = $id;
-        $this->data['action'] = 'grados/Grados/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['grados'] = $this->grados->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('grados/registro', $this->data);
-        $this->load->view('footer');
+        $action = 'grados/grados/editar';
+        $titulo = 'Modificar';
+        $grados = $this->grados->buscar($id);
+        $this->twig->display('grados/registro', compact('titulo', 'action', 'grados'));
     }
 
     public function editar()
@@ -59,10 +52,10 @@ class Grados extends CI_Controller
         if ($resultado) {
             redirect(base_url('grados/Grados'));
         } else {
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'grados/Grados/guardar';
-            $this->data['url'] = 'grados/Grados';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'grados/Grados/guardar';
+            $url = 'grados/Grados';
         }
     }
 

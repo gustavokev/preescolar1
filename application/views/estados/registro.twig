@@ -1,0 +1,41 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmestado'} %}
+    {{ form_open(base_url(action), attributes) }}
+
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <input type="text" class="form-control" id="estado" name="estado" value="{{estados.estado|default('')}}" placeholder="Estado:">
+                    </div>
+                </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4 col-md-offset-4">
+                    <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                        <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_close() }}
+
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#guardar').click(function(){
+                if($('#estado').val() == ''){
+                    alert('Debe ingresar el año');
+                    $('#estado').focus();
+            }else{
+                alert('Enviar');
+                $('#frmestado').submit();
+            }
+    })
+});
+    </script>
+{% endblock %}

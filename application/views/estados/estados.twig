@@ -1,0 +1,34 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+            <a class="btn btn-success" href="{{ base_url('estados/estados/registrar') }}" title="">Registrar Estado</a><br>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr class="danger">
+                        <th class="text-center"># ID</th>
+                        <th class="text-center">Estados</th>
+                        <th class="text-center">Editar</th>
+                        <th class="text-center">Eliminar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for estados in listar %}
+                        <tr class="">
+                            <td class="active text-right">{{ "%02d"|format(loop.index)}}</td>
+                            <td class="success">{{ estados.estado|capitalize}}</td>
+                            <td class="active text-center"><a class="btn bg-warning" href="{{ base_url('estados/estados/modificar/' ~ estados.id) }}">Editar</a></td>
+                            <td class="active text-center"><a class="btn bg-danger" href="{{ base_url('estados/estados/eliminar/' ~ estados.id) }}">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+                <div class="col-md-4 col-md-offset-4">
+                    <a class="btn-block" href="{{ base_url('estados/estados') }}">
+                    <img width="130" src="{{ base_url('imagenes/subir-boton.png') }}" alt=""></a>
+                </div>
+            </div><br>
+{% endblock %}
+    

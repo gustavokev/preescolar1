@@ -1,0 +1,55 @@
+
+        {% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmalumno'} %}
+          
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        {% set attributes = {'class' : 'control-label'} %} <!-- => seria un array example $atributes('class'=>'control-label') -->
+                        {{ form_label('Nombre', 'Nombre', attributes) }} <!-- => echo form_label('Wnombre', 'nombre', $attributes); -->
+
+                        {{alumnos.nombre_al }}
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Apellido: {{alumnos.apellido_al }}</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Fecha de Nacimiento: {{alumnos.fecha_nac }}</label>
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Sexo: {{alumnos.sexo }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Estado: {{alumnos.estado}}</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Municipio: {{alumnos.municipio }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+{% endblock %}

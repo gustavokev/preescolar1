@@ -1,0 +1,148 @@
+
+        {% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmalumno'} %}
+    {{ form_open(base_url(action), attributes) }}
+          
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        {% set attributes = {'class' : 'control-label'} %} <!-- => seria un array example $atributes('class'=>'control-label') -->
+                        {{ form_label('Nombre', 'Nombre', attributes) }} <!-- => echo form_label('Wnombre', 'nombre', $attributes); -->
+
+                        {% set data = {'name':'nombre_al', 'id' : 'nombre_al', 'class' : 'form-control ', 'placeholder':'Nombre', 'value':alumnos.nombre_al|default('')} %}
+                        {{ form_input(data) }}
+                    </div>
+                </div>
+                <!--/span--><span id="apellido_al"></span><div id="error"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Apellido </label>
+                        <input type="text" class="form-control" id="apellido_al" name="apellido_al" value="{{alumnos.apellido_al|default('')}}" placeholder="Apellido">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Fecha de Nacimiento</label>
+                        <input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="{{alumnos.fecha_nac|default('')}}" placeholder="Fecha de Nacimiento">
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Sexo</label>
+                        <select name="sexo" id="sexo" class="form-control">
+                            <option value="{{alumnos.sexo|default('')}}">Selecciona: {{alumnos.sexo|default('')}}</option>
+                            <option value="femenino">femenino</option>
+                            <option value="masculino">masculino</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <select name="estados_id" id="estados_id" class="form-control">
+                            <option value="0">Selecciona: </option>
+                                {% for estado in estados %}
+                                {% set selected = ''%}
+                                {% if estado.id == alumnos.estados_id %}
+                                    {% set selected = 'selected="selected"'%}
+                                {% endif %}
+                            <option {{selected}} value="{{estado.id}}">{{estado.estado}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Municipio</label>
+                        <select name="municipios_id" id="municipios_id" class="form-control">
+                            <option value="{{alumnos.municipios_id|default('')}}">Selecciona: {{alumnos.municipio|default('')}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4 col-md-offset-4">
+                    <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                        <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{ form_close() }}
+
+{% endblock %}
+{% block script %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#guardar').click(function(){
+            if($('#nombre_al').val() == ''){
+                alert('Debe ingresar el Nombre');
+                $('#nombre_al').focus();
+            }else if($('#apellido_al').val() == ''){
+                alert('Debe ingresar el Apellido');
+                $('#apellido_al').focus();
+            }else if($('#sexo').val() == ''){
+                alert('Debe ingresar el Sexo');
+                $('#sexo').focus();
+            }else if($('#estados_id').val() == ''){
+                alert('Debe ingresar el Estado');
+                $('#estados_id').focus();
+            }else if($('#municipios_id').val() == ''){
+                alert('Debe ingresar el Municipio');
+                $('#municipios_id').focus();
+            }else if($('#fecha_nac').val() == ''){
+                alert('Debe ingresar la Fecha de Nacimiento');
+                $('#fecha_nac').focus();
+            }else{
+                //alert('Enviar');
+                $('#frmalumno').submit();
+            }
+        });
+
+        $('#estados_id').on('change',function () {
+                var estados_id = $(this).val();
+                $("#municipios_id").find('option:gt(0)').remove().end();
+                if(estados_id > 0){
+                    $.get( "/preescolar/municipios/Municipios/searchMunEst/"+estados_id, function( response ) {
+                        var $option = '';
+                        $.each(response, function(i, municipios) {
+                            $option += '<option value="'+municipios.id+'">'+municipios.municipio+'</options>'
+                        });
+                        $("#municipios_id").append($option)
+                    }, 'json');
+                }
+            })
+
+            $('#municipios_id').on('change',function () {
+                var municipios_id = $(this).val();
+                $("#sectores_id").find('option:gt(0)').remove().end();
+                if(municipios_id > 0){
+                    $.get( "/preescolar/parroquias/Parroquias/searchParMun/"+municipios_id, function( response ) {
+                        var $option = '';
+                        $.each(response, function(i, parroquias) {
+                            $option += '<option value="'+parroquias.id+'">'+parroquias.parroquia+'</options>'
+                        });
+                        $("#sectores_id").append($option)
+                    }, 'json');
+                }
+            })
+
+    });
+
+    </script>
+{% endblock %}
+

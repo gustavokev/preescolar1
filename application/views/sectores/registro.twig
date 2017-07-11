@@ -1,0 +1,63 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmsector'} %}
+    {{ form_open(base_url(action), attributes) }}
+
+<div class="form-body">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Parroquia</label>
+                <select name="parroquias_id" id="parroquias_id" class="form-control">
+                    <option value="0">Selecciona: </option>
+                    {% for parroquia in parroquias %}
+                        {% set selected = ''%}
+                        {% if parroquia.id == sectores.parroquias_id %}
+                            {% set selected = 'selected="selected"'%}
+                        {% endif %}
+                        <option {{selected}} value="{{parroquia.id}}">{{parroquia.parroquia}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">sector</label>
+                <input type="text" class="form-control" id="sector" name="sector" value="{{sectores.sector|default('')}}" placeholder="sector:">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-4 col-md-offset-4">
+            <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+            </button>
+        </div>
+    </div>
+</div>
+
+    {{ form_close() }}
+
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#guardar').click(function(){
+                if($('#sector').val() == ''){
+                    alert('Debe ingresar el Sector');
+                    $('#sector').focus();
+                }else{
+                    // alert('Enviar');
+                    $('#frmsector').submit();
+                }
+            })
+        });
+    </script>
+{% endblock %}
+
+
+
+

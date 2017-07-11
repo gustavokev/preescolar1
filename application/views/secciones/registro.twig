@@ -1,0 +1,54 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+   {% set attributes = {'id' :'frmseccion'} %}
+    {{ form_open(base_url(action), attributes) }}
+
+<div class="form-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Sección</label>
+                <select name="seccion" id="seccion" class="form-control">
+                    <option value="{{secciones.seccion|default('')}}">{{secciones.seccion|default('')}}</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>e
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-4 col-md-offset-4">
+                <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                    <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {{ form_close() }}
+
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#guardar').click(function(){
+                if($('#seccion').val() == ''){
+                    alert('Debe ingresar la Seccion');
+                    $('#seccion').focus();
+                }else{
+                    // alert('Enviar');
+                    $('#frmseccion').submit();
+                }
+            })
+        });
+    </script>
+{% endblock %}
+    
+
+
+

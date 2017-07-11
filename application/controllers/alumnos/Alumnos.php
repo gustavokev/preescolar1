@@ -19,35 +19,30 @@ class Alumnos extends CI_Controller {
 	public function index()
     {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-        $this->data['titulo'] = 'Alumnos';
-        $this->data['listar'] = $this->alumnos->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('alumnos/alumnos');
-        $this->load->view('footer');
+        $titulo = 'Alumnos';
+        $listar = $this->alumnos->listar();
+        $this->twig->display('alumnos/alumnos', compact('titulo', 'listar'));
     }
 
     public function detalles($id)
 	{
-        $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-        $this->data['id']      = $id;
-        $this->data['titulo'] = 'Detalles de Alumno';
-        $this->data['alumnos'] = $this->alumnos->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('alumnos/detalles', $this->data);
-        $this->load->view('footer');
+        $titulo = 'Detalles';
+        $alumnos = $this->alumnos->buscar($id);
+        $estados = $this->estados->listar();
+        $grados = $this->grados->listar();
+        $secciones = $this->secciones->listar();
+        $this->twig->display('alumnos/detalles', compact('titulo', 'estados', 'grados', 'secciones', 'alumnos'));
     }
 
 	public function registrar()
     {	
-        $this->data['titulo'] = 'Registrar';
-        $this->data['action'] = 'alumnos/Alumnos/guardar';
-        $this->data['estados'] = $this->estados->listar();
-        $this->data['grados'] = $this->grados->listar();
-        $this->data['secciones'] = $this->secciones->listar();
-        $this->data['anios'] = $this->anio->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('alumnos/registro', $this->data);
-		$this->load->view('footer');
+        $titulo = 'Registrar';
+        $action = 'alumnos/Alumnos/guardar';
+        $estados = $this->estados->listar();
+        $grados = $this->grados->listar();
+        $secciones = $this->secciones->listar();
+        $anios = $this->anio->listar();
+        $this->twig->display('alumnos/registro', compact('titulo', 'action', 'estados', 'grados', 'secciones', 'anios'));
     }
 
     public function guardar()
@@ -68,27 +63,24 @@ class Alumnos extends CI_Controller {
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-        	$this->data['action'] = 'alumnos/Alumnos/guardar';
-            $this->data['url']   = 'alumnos/Alumnos';
-            $this->data['titulo'] = 'Registro';
-            $this->load->view('alumnos/registro', $this->data);
+            $error = 'error';
+        	$action = 'alumnos/Alumnos/guardar';
+            $url   = 'alumnos/Alumnos';
+            $titulo = 'Registro';
+            $this->twig->display('alumnos/registro', compact('titulo', 'action', 'url', 'error'));
         }
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'alumnos/Alumnos/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['alumnos'] = $this->alumnos->buscar($id);
-        $this->data['estados'] = $this->estados->listar();
-        $this->data['grados'] = $this->grados->listar();
-        $this->data['secciones'] = $this->secciones->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('alumnos/registro', $this->data);
-		$this->load->view('footer');
+        $id      = $id;
+        $action = 'alumnos/Alumnos/editar';
+        $titulo = 'Modificar';
+        $alumnos = $this->alumnos->buscar($id);
+        $estados = $this->estados->listar();
+        $grados = $this->grados->listar();
+        $secciones = $this->secciones->listar();
+        $this->twig->display('alumnos/registro', compact('titulo', 'action', 'estados', 'grados', 'secciones', 'alumnos', 'url', 'error'));
     }
 
     public function editar()
@@ -107,10 +99,10 @@ class Alumnos extends CI_Controller {
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'alumnos/Alumnos/guardar';
-            $this->data['url']   = 'alumnos/Alumnos';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'alumnos/Alumnos/guardar';
+            $url   = 'alumnos/Alumnos';
         }
     }
 

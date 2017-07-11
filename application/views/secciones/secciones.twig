@@ -1,0 +1,33 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+
+<div class="table-responsive">
+	<a class="btn btn-success" href="{{ base_url('secciones/secciones/registrar') }}" title="">Registrar seccion</a><br>
+		<table class="table table-bordered table-hover table-condensed">
+			<thead>
+				<tr class="danger">
+					<th class=" text-center"># ID</th>
+					<th class=" text-center">Seccion</th>
+					<th class=" text-center">Editar</th>
+					<th class=" text-center">Eliminar</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for secciones in listar %}
+					<tr class="">
+			            <td class="active text-right">{{ "%02d"|format(loop.index)}}</td>
+						<td class="success">{{ secciones.seccion|capitalize}}</td>
+						
+						<td class="active text-center"><a class="btn bg-warning" href="{{ base_url('secciones/secciones/modificar/' ~ secciones.id) }}">Editar</a></td>
+						<td class="active text-center"><a class="btn bg-danger" href="{{ base_url('secciones/secciones/eliminar/' ~ secciones.id) }}">Eliminar</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	<div class="col-md-4 col-md-offset-4">
+		<a class="btn btn-primary btn-block" href="{{ base_url('secciones/secciones') }}">Arriba</a>
+	</div>
+</div>
+	
+{% endblock %}

@@ -38,6 +38,20 @@
                     }, 'json');
                 }
             })
+
+            $('#parroquias_id').on('change',function () {
+                var parroquias_id = $(this).val();
+                $("#sectores_id").find('option:gt(0)').remove().end();
+                if(parroquias_id > 0){
+                    $.get( "/preescolar/sectores/Sectores/searchSerPar/"+parroquias_id, function( response ) {
+                        var $option = '';
+                        $.each(response, function(i, sectores) {
+                            $option += '<option value="'+sectores.id+'">'+sectores.sector+'</options>'
+                        });
+                        $("#sectores_id").append($option)
+                    }, 'json');
+                }
+            })
         });
 
         $('.myCarousel').carousel({

@@ -7,6 +7,7 @@ class Parroquias extends CI_Controller {
     {
         parent::__construct();
 
+        $this->load->model('SectoresModel', 'sectores');
         $this->load->model('ParroquiasModel', 'parroquias');
         $this->load->model('MunicipiosModel', 'municipios');
         $this->load->model('EstadosModel', 'estados');
@@ -16,21 +17,17 @@ class Parroquias extends CI_Controller {
     public function index()
     {
         $this->load->helper(array('dateformat'));
-        $this->data['titulo'] = 'Parroquias';
-        $this->data['listar'] = $this->parroquias->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('parroquias/parroquias');
-        $this->load->view('footer');
+        $titulo = 'Parroquias';
+        $listar = $this->parroquias->listar();
+        $this->twig->display('parroquias/parroquias', compact('titulo', 'listar'));  
     }
 
     public function registrar()
     {
-        $this->data['titulo']  = 'Registrar';
-        $this->data['action']  = 'parroquias/Parroquias/guardar';
-        $this->data['estados'] = $this->estados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('parroquias/registro', $this->data);
-        $this->load->view('footer');
+        $titulo  = 'Registrar';
+        $action  = 'parroquias/parroquias/guardar';
+        $municipios = $this->municipios->listar();
+        $this->twig->display('parroquias/registro', compact('titulo', 'action', 'municipios'));
     }
 
     public function searchParMun($municipios_id)
@@ -44,15 +41,15 @@ class Parroquias extends CI_Controller {
         $municipios_id = $this->input->post('municipios_id');
         $parroquia = $this->input->post('parroquia');
         $resultado = $this->parroquias->guardar($municipios_id, $parroquia);
-        redirect('parroquias/Parroquias', 'location');
+        redirect('parroquias/parroquias', 'location');
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'parroquias/Parroquias/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['parroquias'] = $this->parroquias->buscar($id);
+        $id      = $id;
+        $action = 'parroquias/parroquias/editar';
+        $titulo = 'Modificar';
+        $parroquias = $this->parroquias->buscar($id);
         $this->load->view('header', $this->data);
         $this->load->view('parroquias/registro', $this->data);
         $this->load->view('footer');
@@ -64,12 +61,12 @@ class Parroquias extends CI_Controller {
         $parroquia = $this->input->post('parroquia');
         $resultado = $this->parroquias->editar($id, $parroquia);
         if($resultado){
-            redirect(base_url('parroquias/Parroquias'));
+            redirect(base_url('parroquias/parroquias'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'parroquias/Parroquias/guardar';
-            $this->data['url']   = 'parroquias/Parroquias';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'parroquias/parroquias/guardar';
+            $url   = 'parroquias/parroquias';
         }
     }
 
@@ -77,7 +74,7 @@ class Parroquias extends CI_Controller {
     {
         $resultado = $this->parroquias->eliminar($id);
         if($resultado){
-            redirect(base_url('parroquias/Parroquias'));
+            redirect(base_url('parroquias/parroquias'));
         }
     }
 }

@@ -18,9 +18,6 @@ class Representantes extends CI_Controller {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $titulo = 'Representantes';
         $listar = $this->representantes->listar();
-		/*$this->load->view('header', $this->data);
-        $this->load->view('representantes/representantes');
-        $this->load->view('footer');*/
         $this->twig->display('representantes/representantes', compact('titulo', 'listar'));
     }
 
@@ -42,12 +39,11 @@ class Representantes extends CI_Controller {
         $telefono = $this->input->post('telefono');
         $celular = $this->input->post('celular');
         $email = $this->input->post('email');
-        $estatus = $this->input->post('estatus');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
         $direccion = $this->input->post('direccion');
-        $resultado = $this->representantes->guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        $resultado = $this->representantes->guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
@@ -80,13 +76,12 @@ class Representantes extends CI_Controller {
         $telefono = $this->input->post('telefono');
         $celular = $this->input->post('celular');
         $email = $this->input->post('email');
-        $estatus = $this->input->post('estatus');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
         $direccion = $this->input->post('direccion');
 
-        $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{

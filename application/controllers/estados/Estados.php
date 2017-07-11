@@ -14,21 +14,17 @@ class Estados extends CI_Controller
 	public function index()
 	{
 		$this->load->helper(array('dateformat'));
-		$this->data['titulo'] = 'Estados';
-		$this->data['listar'] = $this->estados->listar();
-		$this->load->view('header', $this->data);
-        $this->load->view('estados/estados');
-		$this->load->view('footer');
+		$titulo = 'Estados';
+		$listar = $this->estados->listar();
+		$this->twig->display('estados/estados', compact('titulo', 'listar'));
 	}
 
 	public function registrar()
     {	
-        $this->data['titulo'] = 'Registrar';
-        $this->data['action'] = 'estados/Estados/guardar';
-        $this->data['estados'] = $this->estados->listar();
-        $this->load->view('header', $this->data);
-        $this->load->view('estados/registro', $this->data);
-		$this->load->view('footer');
+        $titulo = 'Registrar';
+        $action = 'estados/Estados/guardar';
+        $estados  = $this->estados->listar();
+        $this->twig->display('estados/registro', compact('titulo', 'action', 'estados'));
     }
 
     public function guardar()
@@ -38,24 +34,22 @@ class Estados extends CI_Controller
         if($resultado){
             redirect(base_url('estados/Estados'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-        	$this->data['action'] = 'estados/Estados/guardar';
-            $this->data['url']   = 'estados/Estados';
-            $this->data['titulo'] = 'Registro';
-            $this->load->view('estados/registro', $this->data);
+            $metodo = 'guardar';
+            $error = 'error';
+        	$action = 'estados/Estados/guardar';
+            $url   = 'estados/Estados';
+            $titulo = 'Registro';
+            $this->twig->display('estados/registro', compact('titulo', 'metodo', 'error', 'url', 'action'));
         }
     }
 
     public function modificar($id)
     {
-        $this->data['id']      = $id;
-        $this->data['action'] = 'estados/Estados/editar';
-        $this->data['titulo'] = 'Modificar';
-        $this->data['estados'] = $this->estados->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('estados/registro', $this->data);
-		$this->load->view('footer'); 
+        $id      = $id;
+        $action = 'estados/Estados/editar';
+        $titulo = 'Modificar';
+        $estados = $this->estados->buscar($id);
+        $this->twig->display('estados/registro', compact('titulo', 'action', 'estados')); 
     }
 
     public function editar()
@@ -66,10 +60,10 @@ class Estados extends CI_Controller
         if($resultado){
             redirect(base_url('estados/Estados'));
         }else{
-            $this->data['metodo'] = 'guardar';
-            $this->data['error'] = 'error';
-            $this->data['action'] = 'estados/Estados/guardar';
-            $this->data['url']   = 'estados/Estados';
+            $metodo = 'guardar';
+            $error = 'error';
+            $action = 'estados/Estados/guardar';
+            $url   = 'estados/Estados';
         }
     }
 
