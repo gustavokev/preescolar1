@@ -9,7 +9,7 @@
                     <div class="form-group">
 
                         {% set attributes = {'class' : 'control-label'} %} <!-- => seria un array example $atributes('class'=>'control-label') -->
-                        {{ form_label('Cedula', 'cedula', attributes) }} <!-- => echo form_label('WCedula', 'cedula', $attributes); -->
+                        {{ form_label('Cedula:  <span id="msgCedula"></span>', 'cedula', attributes) }} <!-- => echo form_label('WCedula', 'cedula', $attributes); -->
 
                         {% set data = {'name':'cedula', 'id' : 'cedula', 'class' : 'form-control ', 'placeholder':'Cedula', 'value':docentes.cedula|default('')} %}
                         {{ form_input(data) }}
@@ -50,7 +50,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Correo</label>
+                        <label class="control-label">Correo: <span id="msgEmail"></span></label>
                         <input type="text" class="form-control" id="email" name="email" value="{{docentes.email|default('')}}" placeholder="Correo:">
                     </div>
                 </div>
@@ -98,8 +98,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Sector</label>
-                        <select name="" id="" class="form-control">
-                            <option value="0">Selecciona: </option>
+                        <select name="sectores_id" id="sectores_id" class="form-control">
+                            <option value="0">Selecciona: {{docentes.sector|default('')}}</option>
                         </select>
                     </div>
                 </div>
@@ -181,6 +181,19 @@
                 }
             })
 
+            $('#parroquias_id').on('change',function () {
+                var parroquias_id = $(this).val();
+                $("#sectores_id").find('option:gt(0)').remove().end();
+                if(parroquias_id > 0){
+                    $.get( "/preescolar/sectores/Sectores/searchSerPar/"+parroquias_id, function( response ) {
+                        var $option = '';
+                        $.each(response, function(i, sectores) {
+                            $option += '<option value="'+sectores.id+'">'+sectores.sector+'</options>'
+                        });
+                        $("#sectores_id").append($option)
+                    }, 'json');
+                }
+            })
         });
     </script>
 {% endblock %}

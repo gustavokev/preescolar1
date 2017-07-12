@@ -17,8 +17,8 @@ class Inicio extends CI_Controller {
 
     public function hola()
     {
-        $this->data['titulo'] = 'Inicio';
-        $this->twig->display('inicio/hola', compact('title'),$this->data);
+        $titulo = 'Hola';
+        $this->twig->display('tpl/sidebar', compact('titulo'));
     }
 }
 

@@ -10,6 +10,7 @@ class Docentes extends CI_Controller {
         $this->load->model('EstadosModel', 'estados');
         $this->load->model('MunicipiosModel', 'municipios');
         $this->load->model('ParroquiasModel', 'parroquias');
+        $this->load->model('SectoresModel', 'sectores');
 
     }
 
@@ -42,8 +43,9 @@ class Docentes extends CI_Controller {
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
+        $sectores_id = $this->input->post('sectores_id');
         $direccion = $this->input->post('direccion');
-        $resultado = $this->docentes->guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        $resultado = $this->docentes->guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id,$sectores_id, $direccion);
         if($resultado){
             redirect(base_url('docentes/docentes'));
         }else{
@@ -63,8 +65,11 @@ class Docentes extends CI_Controller {
         $titulo = 'Modificar';
         $docentes = $this->docentes->buscar($id);
         $estados = $this->estados->listar();
+        $municipios = $this->municipios->listar();
+        $parroquias = $this->parroquias->listar();
+        $sectores = $this->sectores->listar();
 
-        $this->twig->display('docentes/registro', compact('titulo', 'action', 'estados', 'docentes'));
+        $this->twig->display('docentes/registro', compact('titulo', 'action', 'estados','municipios','parroquias','sectores', 'docentes'));
     }
 
     public function editar()
@@ -79,9 +84,10 @@ class Docentes extends CI_Controller {
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
+        $sectores_id = $this->input->post('sectores_id');
         $direccion = $this->input->post('direccion');
 
-        $resultado = $this->docentes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        $resultado = $this->docentes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $sectores_id, $direccion);
         if($resultado){
             redirect(base_url('docentes/docentes'));
         }else{
@@ -114,5 +120,31 @@ class Docentes extends CI_Controller {
         $this->load->view('header', $this->data);
         $this->load->view('docentes/buscar');
         $this->load->view('footer');
+    }
+
+    public function comprobar_cedula_ajax() 
+    {
+        $cedula = $this->input->post('cedula');
+        $comprobar_cedula = $this->representantes->verifica_cedula($cedula);
+        if ($comprobar_cedula) {
+            $this->form_validation->set_message('comprobar_cedula_ajax', '%s: ya existe en la base de datos');
+            return FALSE;
+        } else {
+            echo '<div style="display:none">1</div>';
+            return TRUE;
+        }
+    }
+
+    public function comprobar_email_ajax() 
+    {
+        $email = $this->input->post('email');
+        $comprobar_email = $this->representantes->verifica_email($email);
+        if ($comprobar_email) {
+            $this->form_validation->set_message('comprobar_email_ajax', '%s: ya existe en la base de datos');
+            return FALSE;
+        } else {
+            echo '<div style="display:none">1</div>';
+            return TRUE;
+        }
     }
 }

@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
 {% include 'tpl/head.twig'  %}
-<body>
-    {% include 'tpl/menu.twig'  %}
-    <div class="container-fluid">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <div class="col-xs-12 col-sm-9 col-sm-push-3">
-                <button type="button" class="pull-left btn btn-default visible-xs" data-toggle="offcanvas" aria-expanded="false" aria-controls="navbar">
-                    <i class="fa fa-navicon"></i>
-                </button>
-                <div class="jumbotron">
-                    {% block content %}{% endblock %}
+{% include 'tpl/header.twig'  %}
+    <body background="{{ base_url('imagenes/fondo.jpg') }}">
+        {% include 'tpl/menu.twig'  %}
+        <div class="container-fluid">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-12 col-sm-9 col-sm-push-3">
+                    <button type="button" class="pull-left btn btn-default visible-xs" data-toggle="offcanvas" aria-expanded="false" aria-controls="navbar">
+                        <i class="fa fa-navicon"><a href="{{ base_url('inicio/hola') }}" title="">LISTA</a></i>
+                    </button>
+                    <div class="jumbotron">
+                        {% block content %}{% endblock %}
+                    </div>
                 </div>
+                {% include 'tpl/sidebar.twig'  %}
             </div>
-            {% include 'tpl/sidebar.twig'  %}
+        {% include 'tpl/footer.twig'  %}
         </div>
-    {% include 'tpl/footer.twig'  %}
-    </div>
-    <script src="{{ base_url('js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ base_url('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ base_url('js/funciones1.js') }}"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('.myCarousel').carousel({
-                interval: 3000
-            });
-    });
-    </script>
-    {% block script %}
-    {% endblock %}
-</body>
+        <script src="{{ base_url('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ base_url('js/funciones1.js') }}"></script>
+        <script type="text/javascript" src="{{ base_url('js/bootstrap.min.js') }}"></script>
+        {% block script %}
+        {% endblock %}
+    </body>
 </html>
