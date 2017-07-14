@@ -8,12 +8,12 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Estado</label>
+                <label class="control-label">Estado: </label>
                 <select name="estados_id" id="estados_id" class="form-control">
                     <option value="0">Selecciona: </option>
                     {% for estado in estados %}
                         {% set selected = ''%}
-                        {% if estado.id == representantes.estados_id %}
+                        {% if estado.id == municipios.estados_id %}
                             {% set selected = 'selected="selected"'%}
                         {% endif %}
                         <option {{selected}} value="{{estado.id}}">{{estado.estado}}</option>
@@ -24,8 +24,10 @@
     
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Municipio</label>
-                <input type="text" class="form-control" id="municipio" name="municipio" value="{{municipios.municipio|default('')}}" placeholder="Municipio:">
+                {{ form_label('Municipio: ', 'Municipio', attributes) }}
+                {% set attributes = {'class' : 'control-label'} %}
+                {% set data = {'name':'municipio', 'id' : 'municipio', 'class' : 'form-control ', 'placeholder':'Municipio', 'value':municipios.municipio|default('')} %}
+                {{ form_input(data) }}
             </div>
         </div>
     </div>

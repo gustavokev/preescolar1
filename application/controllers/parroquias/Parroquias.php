@@ -50,9 +50,8 @@ class Parroquias extends CI_Controller {
         $action = 'parroquias/parroquias/editar';
         $titulo = 'Modificar';
         $parroquias = $this->parroquias->buscar($id);
-        $this->load->view('header', $this->data);
-        $this->load->view('parroquias/registro', $this->data);
-        $this->load->view('footer');
+        $municipios = $this->municipios->listar();
+        $this->twig->display('parroquias/registro', compact('action', 'titulo', 'parroquias', 'municipios'));
     }
 
     public function editar()

@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#cedula').focusout( function(){
         if( $("#cedula").val().length < 7)
         {
-            $('#msgCedula').html("<span style='color:#f00'>El nick debe contener 7 carácteres mínimo</span>");
+            $('#msgCedula').html("<span style='color:#f00'>La Cédula debe contener 7 carácteres mínimo</span>");
         }else{
             $.ajax({
                 type: "POST",

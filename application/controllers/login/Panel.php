@@ -7,11 +7,14 @@ class Panel extends CI_Controller {
 	{
 		parent::__construct();
 		$this->sesion();
+		$this->load->model('UsuariosModel','umo');
 	}
 
 	public function index()
 	{
-		echo "Hola usuario: ". $this->session->userdata('usuario');
+		$ver = $this->umo->ver();
+		$this->twig->display('login/sesion', compact('titulo', 'ver'));
+		echo "<h4>"."--"." Hola usuario: ". $this->session->userdata('usuario')."--</h4>";
 	}
 
 	public function sesion()
@@ -22,10 +25,8 @@ class Panel extends CI_Controller {
 		}
 		else
 		{
-			$this->data['titulo'] = 'Sesión Iniciada';
-			$this->load->view('header', $this->data);
-			$this->load->view('login/sesion');
-			$this->load->view('footer', $this->data);
+			$titulo = 'Sesión Iniciada';
+			$this->twig->display('login/sesion', compact('titulo'));
 		}
 	}
 

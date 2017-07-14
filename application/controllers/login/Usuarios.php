@@ -13,18 +13,14 @@ class Usuarios extends CI_Controller {
 
 	public function index()
 	{
-		$this->data['titulo'] = 'Login';
-		$this->load->view('header', $this->data);
-		$this->load->view('login/usuarios');
-		$this->load->view('footer', $this->data);
+		$titulo = 'Login';
+		$this->twig->display('login/usuarios', compact('titulo'));
 	}
 
 	public function registro()
 	{
-		$this->data['titulo'] = 'Registro';
-		$this->load->view('header', $this->data);
-		$this->load->view('login/registro_usuario');
-		$this->load->view('footer', $this->data);
+		$titulo = 'Registro';
+		$this->twig->display('login/registro_usuario', compact('titulo'));
 	}
 
 	public function registrar()
@@ -47,15 +43,15 @@ class Usuarios extends CI_Controller {
 			if ($this->form_validation->run() != FALSE)
 			{
 				$this->umo->registrar_usuario();
-				$data = array('mensaje' => 'El Usuario se registró correctamente');
-				$this->load->view('login/registro_usuario' ,$data);
+				$titulo = 'Registro';
+				$mensaje = 'El Usuario se registró correctamente';
+				$this->twig->display('login/registro_usuario', compact('mensaje', 'titulo'));
 			}
 			else
 			{
-				$this->data['titulo'] = 'Registro';
-				$this->load->view('header', $this->data);
-				$this->load->view('login/registro_usuario');
-				$this->load->view('footer', $this->data);
+				$titulo = 'Registro';
+				$mensaje = 'No se pudo registrar';
+				$this->twig->display('login/registro_usuario', compact('titulo', 'mensaje'));
 			}
 		}
 	}
@@ -99,11 +95,9 @@ class Usuarios extends CI_Controller {
 			}
 			else
 			{
-				$this->data = array('mensaje' => 'El Usuario/Contraseña son Incorrectos');
-				$this->data['titulo'] = 'Inicio de Sesión';
-				$this->load->view('header', $this->data);
-				$this->load->view('login/usuarios', $this->data);
-				$this->load->view('footer', $this->data);
+				$mensaje = 'No se ha iniciado Sesión';
+				$titulo = 'Inicio de Sesión';
+				$this->twig->display('login/usuarios', compact('mensaje', 'titulo'));
 			}
 		}
 		else

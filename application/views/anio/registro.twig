@@ -7,8 +7,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Año Escolar</label>
-                        <input type="text" class="form-control" id="anio" name="anio" value="{{anios.anio|default('')}}" placeholder="Año Escolar:">
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {{ form_label('Año Escolar', 'Año Escolar', attributes) }}
+                        {% set data = {'name':'anio', 'id' : 'anio', 'class' : 'form-control ', 'placeholder':'Año Escolar', 'value':alumnos.anio|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
 

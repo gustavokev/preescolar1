@@ -1,0 +1,23 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+			
+			<form method="post" id="formid">
+			    <div id="ok"></div>
+			    <p><span>Nombre</span>
+			    <input type="text" name="name" id="name" /></p>
+			    <p><span>Apellidos</span>
+			    <input type="text" name="lastname" id="lastname" /></p>
+			    <p><span>Email</span>
+			    <input type="text" name="email" id="email" /></p>
+			    <p><span>Teléfono</span>
+			    <input type="text" name="phone" id="phone" /></p>
+			    <p><span>Edad</span>
+			    <input type="text" name="years" id="years" /></p>
+			    <p><span>Mensaje</span>
+			    <textarea id="message" name="message" rows="5" cols="53"></textarea></p>
+
+			    <input type="submit" value="Enviar" style=" margin-left:565px;" />
+			</form>
+		
+	</div>
+{% endblock %}

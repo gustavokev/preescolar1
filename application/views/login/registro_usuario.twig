@@ -1,0 +1,52 @@
+{% extends "tpl/layout.twig" %}
+{% block content %}
+
+<div class="form-body">
+    <div class="row">
+
+<div class="container" id="">
+	<h1>Registro de Usuario</h1>
+		
+		{% if var == null %}
+    		<h2>{{ mensaje }}</h2>
+		{% endif %}	
+		
+
+
+	<form name="form_reg" action="{{ base_url('login/Usuarios/registrar/') }}" method="POST">
+	
+	<label class="label-info control-label" for="Nombre">Nombre:
+		<input class="form-group bg-danger has-warning" type="text" id="aqui" name="nombre" value="{{ nombre }}"></label>
+
+	<label class="label-info control-label" for="Correo">Correo:
+		<input class="form-group bg-danger has-warning" type="text" id="aqui" name="correo" value="{{ correo }}"></label>
+
+	<label class="label-info control-label" for="Usuario">Usuario:
+		<input class="form-group bg-danger has-warning" type="text" id="aqui" name="usuario" value="{{ usuario }}"></label>
+
+	<label class="label-info control-label" for="Contraseña">Contraseña:
+		<input class="form-group bg-danger has-warning" type="password" id="aqui" name="pass" value="{{ pass }}"></label>
+
+	<label class="label-info control-label" for="Contraseña">Confirme Contraseña:
+		<input class="form-group bg-danger has-warning" type="password" id="aqui" name="pass2" value="{{ pass2 }}"></label>
+
+		<input class="form-group" type="submit" name="submit_reg" onclick="enviar_datos_ajax();" value="Registrar">
+	</form>
+
+	
+		<a href="{{ base_url('login/Usuarios') }}" title="Iniciar Sesión">Iniciar Sesión </a>
+
+		<hr/>
+			{{ validation_errors() }}
+	</div>
+	<div class="form-group">
+            <p><a class="btn btn-info" href="{{ base_url() }}">Inicio</a></p>
+        </div>
+
+	<div id="mostrardatos"></div>
+	</div>	
+</div>
+{% endblock %}
+
+
+	

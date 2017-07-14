@@ -5,12 +5,13 @@
 
 <div class="form-body">
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Grado</label>
-                <input type="text" class="form-control" id="grado" name="grado" value="{{grados.grado|default('')}}" placeholder="Grado:">
+        <div class="col-md-12"><h2>{{ titulo }} de Grado</h2></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Grado</label>
+                    <input type="text" class="form-control" id="grado" name="grado" value="{{grados.grado|default('')}}" placeholder="Grado:">
+                </div>
             </div>
-        </div>
 
         <div class="col-md-6">
                     <div class="form-group">
@@ -27,19 +28,17 @@
                         </select>
                     </div>
                 </div>
-        
 
         <div class="col-md-12">
             <div class="col-md-4 col-md-offset-4">
                 <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
                     <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
                 </button>
-                    </div>
-                </div>
             </div>
-        </div>      
+        </div>
     </div>
-</div>
+</div>      
+    
     {{ form_close() }}
 
 {% endblock %}
@@ -50,11 +49,11 @@
                 if($('#grado').val() == ''){
                     alert('Debe ingresar el grado');
                     $('#grado').focus();
-            }else{
-                alert('Enviar');
-                $('#frmgrado').submit();
-            }
-    })
-});
+                }else{
+                    alert('Enviar');
+                    $('#frmgrado').submit();
+                }
+            })
+        });
     </script>
 {% endblock %}

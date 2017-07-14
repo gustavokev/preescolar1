@@ -2,24 +2,23 @@
 {% block content %}
    {% set attributes = {'id' :'frmdocente'} %}
     {{ form_open(base_url(action), attributes) }}
-
         <div class="form-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-
-                        {% set attributes = {'class' : 'control-label'} %} <!-- => seria un array example $atributes('class'=>'control-label') -->
-                        {{ form_label('Cedula:  <span id="msgCedula"></span>', 'cedula', attributes) }} <!-- => echo form_label('WCedula', 'cedula', $attributes); -->
-
+                        {{ form_label('Cédula:  <span id="msgCedula"></span>', 'cedula', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
                         {% set data = {'name':'cedula', 'id' : 'cedula', 'class' : 'form-control ', 'placeholder':'Cedula', 'value':docentes.cedula|default('')} %}
                         {{ form_input(data) }}
                     </div>
                 </div>
-                <!--/span-->
+
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_re" name="nombre_re" value="{{docentes.nombre_re|default('')}}" placeholder="Nombre">
+                        {{ form_label('Nombre: ', 'Nombre', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'nombre_re', 'id' : 'nombre_re', 'class' : 'form-control ', 'placeholder':'Nombre', 'value':alumnos.nombre_re|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
             </div>
@@ -27,15 +26,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido_re" name="apellido_re" value="{{docentes.apellido_re|default('')}}" placeholder="Apellido">
+                        {{ form_label('Apellido: ', 'Apellido', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'apellido_re', 'id' : 'apellido_re', 'class' : 'form-control ', 'placeholder':'Apellido', 'value':alumnos.apellido_re|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
-                <!--/span-->
+
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Celular</label>
-                        <input type="text" class="form-control" id="celular" name="celular" value="{{docentes.celular|default('')}}" placeholder="Teléfono Celular">
+                        {{ form_label('Teléfono Celular: ', 'Teléfono Celular', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'celular', 'id' : 'celular', 'class' : 'form-control ', 'placeholder':'Teléfono Celular', 'value':alumnos.celular|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
             </div>
@@ -43,8 +46,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Telefono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{docentes.telefono|default('')}}" placeholder="Teléfono Local:">
+                        {{ form_label('Teléfono Local: ', 'Teléfono Local', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'telefono', 'id' : 'telefono', 'class' : 'form-control ', 'placeholder':'Teléfono Local', 'value':alumnos.telefono|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
 

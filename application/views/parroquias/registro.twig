@@ -6,6 +6,7 @@
 <div class="form-body">
 
     <div class="row">
+        <div class="col-md-12"><h2>{{ titulo }} Parroquia</h2></div>
         <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label">municipio</label>
@@ -13,7 +14,7 @@
                     <option value="0">Selecciona: </option>
                     {% for municipio in municipios %}
                         {% set selected = ''%}
-                        {% if municipio.id == representantes.municipios_id %}
+                        {% if municipio.id == parroquias.municipios_id %}
                             {% set selected = 'selected="selected"'%}
                         {% endif %}
                         <option {{selected}} value="{{municipio.id}}">{{municipio.municipio}}</option>
@@ -24,8 +25,10 @@
     
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Parroquia</label>
-                <input type="text" class="form-control" id="parroquia" name="parroquia" value="{{municipios.parroquia|default('')}}" placeholder="Parroquia:">
+                {% set attributes = {'class' : 'control-label'} %}
+                {{ form_label('Parroquia:  <span id="msgParroquia"></span>', 'Parroquia', attributes) }}
+                {% set data = {'name':'parroquia', 'id' : 'parroquia', 'class' : 'form-control ', 'placeholder':'Parroquia', 'value':parroquias.parroquia|default('')} %}
+                {{ form_input(data) }}
             </div>
         </div>
     </div>

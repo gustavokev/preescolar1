@@ -8,6 +8,12 @@
  		parent::__construct();
  	}
 
+ 	public function ver()
+ 	{
+ 		$query = $this->db->get('usuarios');
+ 		return $query->result();
+ 	}
+
  	public function verificar($variable,$campo)
  	{
  		$consulta = $this->db->get_where('usuarios', array($campo => $variable));

@@ -3,7 +3,7 @@
 <div class="container" id="">
 	<h1>Registro de Usuario</h1>
 
-	<?php if (isset($mensaje)){ ?>
+		<?php if (isset($mensaje)){ ?>
 		
 		<h2><?php echo $mensaje?></h2>
 

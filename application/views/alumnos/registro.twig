@@ -1,5 +1,5 @@
 
-        {% extends "tpl/layout.twig" %}
+{% extends "tpl/layout.twig" %}
 {% block content %}
    {% set attributes = {'id' :'frmalumno'} %}
     {{ form_open(base_url(action), attributes) }}
@@ -8,41 +8,57 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-
-                        {% set attributes = {'class' : 'control-label'} %} <!-- => seria un array example $atributes('class'=>'control-label') -->
-                        {{ form_label('Nombre', 'Nombre', attributes) }} <!-- => echo form_label('Wnombre', 'nombre', $attributes); -->
-
+                        {{ form_label('Nombre', 'Nombre', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
                         {% set data = {'name':'nombre_al', 'id' : 'nombre_al', 'class' : 'form-control ', 'placeholder':'Nombre', 'value':alumnos.nombre_al|default('')} %}
                         {{ form_input(data) }}
                     </div>
                 </div>
-                <!--/span--><span id="apellido_al"></span><div id="error"></div>
+
+                <span id="apellido_al"></span><div id="error"></div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Apellido </label>
-                        <input type="text" class="form-control" id="apellido_al" name="apellido_al" value="{{alumnos.apellido_al|default('')}}" placeholder="Apellido">
+                        {{ form_label('Apellido', 'Apellido', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'apellido_al', 'id' : 'apellido_al', 'class' : 'form-control ', 'placeholder':'Apellido', 'value':alumnos.apellido_al|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Fecha de Nacimiento</label>
-                        <input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="{{alumnos.fecha_nac|default('')}}" placeholder="Fecha de Nacimiento">
+                        {{ form_label('Fecha de Nacimiento', 'Fecha de Nacimiento', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
+                        {% set data = {'name':'fecha_nac', 'id' : 'fecha_nac', 'class' : 'form-control ', 'placeholder':'Fecha de Nacimiento', 'value':alumnos.fecha_nac|default('')} %}
+                        {{ form_input(data) }}
                     </div>
                 </div>
                 <!--/span-->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label">Sexo</label>
+                        {{ form_label('Sexo', 'Sexo', attributes) }}
+                        {% set attributes = {'class' : 'control-label'} %}
                         <select name="sexo" id="sexo" class="form-control">
                             <option value="{{alumnos.sexo|default('')}}">Selecciona: {{alumnos.sexo|default('')}}</option>
                             <option value="femenino">femenino</option>
                             <option value="masculino">masculino</option>
                         </select>
                     </div>
+                    {# {% macro select(name, options, selected) %}
+                        <div class="innerB">
+                            <select class="form-control" name="{{name}}">
+                            {% for option in options %}
+                              {% if option.value == selected %}
+                                <option value="{{option.value}}" selected>{{ option.value }}</option>
+                              {% else %}
+                                <option value="{{option.value}}">{{ option.value }}</option>
+                              {% endif %}
+                            {% endfor %}
+                            </select>
+                        </div>
+                    {% endmacro %} #}
                 </div>
             </div>
 
@@ -127,22 +143,20 @@
                 }
             })
 
-            $('#municipios_id').on('change',function () {
-                var municipios_id = $(this).val();
-                $("#sectores_id").find('option:gt(0)').remove().end();
-                if(municipios_id > 0){
-                    $.get( "/preescolar/parroquias/Parroquias/searchParMun/"+municipios_id, function( response ) {
-                        var $option = '';
-                        $.each(response, function(i, parroquias) {
-                            $option += '<option value="'+parroquias.id+'">'+parroquias.parroquia+'</options>'
-                        });
-                        $("#sectores_id").append($option)
-                    }, 'json');
-                }
-            })
-
+        $('#municipios_id').on('change',function () {
+            var municipios_id = $(this).val();
+            $("#sectores_id").find('option:gt(0)').remove().end();
+            if(municipios_id > 0){
+                $.get( "/preescolar/parroquias/Parroquias/searchParMun/"+municipios_id, function( response ) {
+                    var $option = '';
+                    $.each(response, function(i, parroquias) {
+                        $option += '<option value="'+parroquias.id+'">'+parroquias.parroquia+'</options>'
+                    });
+                    $("#sectores_id").append($option)
+                }, 'json');
+            }
+        })
     });
-
-    </script>
+</script>
 {% endblock %}
 
