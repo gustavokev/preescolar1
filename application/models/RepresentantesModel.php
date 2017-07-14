@@ -42,7 +42,7 @@ class RepresentantesModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estados_id, d.municipios_id, d.parroquias_id, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estados_id, d.municipios_id, d.parroquias_id,d.sectores_id, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
         $this->db->from($this->tabla.' AS d');
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
@@ -77,6 +77,7 @@ class RepresentantesModel extends CI_Model {
             );
         $this->db->where('id', $id);
         $resultado = $this->db->update($this->tabla, $data);
+
         // echo $this->db->last_query();
         // exit;
         return $resultado;

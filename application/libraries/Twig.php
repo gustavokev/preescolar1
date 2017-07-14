@@ -19,7 +19,7 @@ class Twig
 	private $config = [];
 
 	private $functions_asis = ['base_url', 'site_url', 'public_url', 'menu', 'submenu', 'projectname', 'resources_admin', 'resources', 'lang', 'getname', 'prueba', 'languajes','multi_languaje'];
-	private $functions_safe = ['form_open', 'form_close', 'form_error','form_input' , 'form_hidden', 'form_password', 'form_button', 'set_value', 'form_hidden', 'img', 'heading', 'link_tag', 'script_tag', 'validation_errors', 'form_submit', 'form_label'];
+	private $functions_safe = ['form_open', 'form_close', 'form_error','form_input' , 'form_hidden', 'form_password', 'form_button', 'set_value', 'form_hidden', 'img', 'heading', 'link_tag', 'script_tag', 'validation_errors', 'form_submit', 'form_label', 'form_dropdown'];
 	private $filters_asis   = ['price', 'dateformat'];
 
 	/**

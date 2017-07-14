@@ -65,6 +65,7 @@ class Representantes extends CI_Controller
         $action = 'representantes/Representantes/editar';
         $titulo = 'Modificar';
         $representantes = $this->representantes->buscar($id);
+
         $estados = $this->estados->listar();
         $municipios = $this->municipios->listar();
         $parroquias = $this->parroquias->listar();
@@ -90,6 +91,7 @@ class Representantes extends CI_Controller
         $direccion = $this->input->post('direccion');
 
         $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $sectores_id, $direccion);
+
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
