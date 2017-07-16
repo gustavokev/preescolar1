@@ -2,6 +2,10 @@
 {% block content %}
    {% set attributes = {'id' :'frmmunicipio'} %}
     {{ form_open(base_url(action), attributes) }}
+        {% if  municipios.id %}
+            {% set data = {'type':'hidden', 'name':'id', 'id' : 'id',  'value':municipios.id|default('')} %}
+            {{ form_input(data) }}
+        {% endif %}
 
 <div class="form-body">
 
@@ -42,6 +46,9 @@
 </div>
 
     {{ form_close() }}
+
+    {% set data = {'type':'hidden', 'name':'estado_id', 'id' : 'estado_id',  'value':municipios.estados_id|default('')} %}
+    {{ form_input(data) }}
 
 {% endblock %}
 {% block script %}

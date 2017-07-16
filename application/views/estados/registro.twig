@@ -2,6 +2,10 @@
 {% block content %}
    {% set attributes = {'id' :'frmestado'} %}
     {{ form_open(base_url(action), attributes) }}
+        {% if  estados.id %}
+            {% set data = {'type':'hidden', 'name':'id', 'id' : 'id', 'value':estados.id|default('')} %}
+            {{ form_input(data) }}
+        {% endif %}
 
         <div class="form-body">
             <div class="row">

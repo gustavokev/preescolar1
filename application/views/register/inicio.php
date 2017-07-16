@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
+
         <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
@@ -18,8 +16,7 @@
             });
         </script>
         <title>Formulario</title>
-    </head>
-    <body>     
+        
            <form>
             <p>Usuario<br>
             <input type="text" name="username"/></p>
@@ -31,5 +28,6 @@
             <input type="text" name="email"/></p>
             <div><input type="submit" value="Enviar" /></div>
         </form>                  
-    </body>
-</html>
+    <div class="">
+            <iframe align="middle" id="ifrmcuerpo" name="ifrmcuerpo" frameborder="0" scrolling="no" src="{{ base_url('view/inicio/inicio') }}" style="height: 500px;">
+        </div>

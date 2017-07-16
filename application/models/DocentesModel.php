@@ -11,8 +11,7 @@ class DocentesModel extends CI_Model {
 
     public function listar()
     {
-        $this->db->select('d.id,
-        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
         $this->db->from($this->tabla.' AS d');
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
@@ -22,7 +21,7 @@ class DocentesModel extends CI_Model {
         return $query->result();
     }
 
-        public function guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $sectores_id, $direccion)
+    public function guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estados_id, $municipios_id, $parroquias_id, $sectores_id, $direccion)
     {
         $data = array(
             'cedula' => $cedula,
@@ -42,7 +41,7 @@ class DocentesModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estados_id, d.municipios_id, d.parroquias_id, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estados_id, d.municipios_id, d.parroquias_id, d.sectores_id, d.direccion, e.estado, m.municipio, p.parroquia, sec.sector');
         $this->db->from($this->tabla.' AS d');
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');

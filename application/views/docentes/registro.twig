@@ -2,129 +2,143 @@
 {% block content %}
    {% set attributes = {'id' :'frmdocente'} %}
     {{ form_open(base_url(action), attributes) }}
-        <div class="form-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form_label('Cédula:  <span id="msgCedula"></span>', 'cedula', attributes) }}
-                        {% set attributes = {'class' : 'control-label'} %}
-                        {% set data = {'name':'cedula', 'id' : 'cedula', 'class' : 'form-control ', 'placeholder':'Cedula', 'value':docentes.cedula|default('')} %}
-                        {{ form_input(data) }}
-                    </div>
-                </div>
+        {% if  docentes.id %}
+            {% set data = {'type':'hidden', 'name':'id', 'id' : 'id',  'value':docentes.id|default('')} %}
+            {{ form_input(data) }}
+        {% endif %}
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form_label('Nombre: ', 'Nombre', attributes) }}
-                        {% set attributes = {'class' : 'control-label'} %}
-                        {% set data = {'name':'nombre_re', 'id' : 'nombre_re', 'class' : 'form-control ', 'placeholder':'Nombre', 'value':alumnos.nombre_re|default('')} %}
-                        {{ form_input(data) }}
-                    </div>
+    <div class="form-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label('Cédula:  <span id="msgCedula"></span>', 'cedula', attributes) }}
+                    {% set attributes = {'class' : 'control-label'} %}
+                    {% set data = {'name':'cedula', 'id' : 'cedula', 'class' : 'form-control ', 'placeholder':'Cedula', 'value':docentes.cedula|default('')} %}
+                    {{ form_input(data) }}
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form_label('Apellido: ', 'Apellido', attributes) }}
-                        {% set attributes = {'class' : 'control-label'} %}
-                        {% set data = {'name':'apellido_re', 'id' : 'apellido_re', 'class' : 'form-control ', 'placeholder':'Apellido', 'value':alumnos.apellido_re|default('')} %}
-                        {{ form_input(data) }}
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form_label('Teléfono Celular: ', 'Teléfono Celular', attributes) }}
-                        {% set attributes = {'class' : 'control-label'} %}
-                        {% set data = {'name':'celular', 'id' : 'celular', 'class' : 'form-control ', 'placeholder':'Teléfono Celular', 'value':alumnos.celular|default('')} %}
-                        {{ form_input(data) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form_label('Teléfono Local: ', 'Teléfono Local', attributes) }}
-                        {% set attributes = {'class' : 'control-label'} %}
-                        {% set data = {'name':'telefono', 'id' : 'telefono', 'class' : 'form-control ', 'placeholder':'Teléfono Local', 'value':alumnos.telefono|default('')} %}
-                        {{ form_input(data) }}
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Correo: <span id="msgEmail"></span></label>
-                        <input type="text" class="form-control" id="email" name="email" value="{{docentes.email|default('')}}" placeholder="Correo:">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Estado</label>
-                        <select name="estados_id" id="estados_id" class="form-control">
-                            <option value="0">Selecciona: </option>
-                            {% for estado in estados %}
-                                {% set selected = ''%}
-                                {% if estado.id == docentes.estados_id %}
-                                    {% set selected = 'selected="selected"'%}
-                                {% endif %}
-                                <option {{selected}} value="{{estado.id}}">{{estado.estado}}</option>
-
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Municipio</label>
-                        <select name="municipios_id" id="municipios_id" class="form-control">
-                            <option value="0">Selecciona: {{docentes.municipio|default('')}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Parroquia</label>
-                        <select name="parroquias_id" id="parroquias_id" class="form-control">
-                            <option value="0">Selecciona: {{docentes.parroquia|default('')}}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Sector</label>
-                        <select name="sectores_id" id="sectores_id" class="form-control">
-                            <option value="0">Selecciona: {{docentes.sector|default('')}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <textarea rows="5" name="direccion" id="direccion" class="form-control" placeholder="Escriba nombre de Calle y N° de casa:">{{docentes.direccion|default('')}}</textarea>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-4 col-md-offset-4">
-                    <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
-                        <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
-                    </button>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label('Nombre: ', 'Nombre', attributes) }}
+                    {% set attributes = {'class' : 'control-label'} %}
+                    {% set data = {'name':'nombre_re', 'id' : 'nombre_re', 'class' : 'form-control ', 'placeholder':'Nombre', 'value':docentes.nombre_re|default('')} %}
+                    {{ form_input(data) }}
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label('Apellido: ', 'Apellido', attributes) }}
+                    {% set attributes = {'class' : 'control-label'} %}
+                    {% set data = {'name':'apellido_re', 'id' : 'apellido_re', 'class' : 'form-control ', 'placeholder':'Apellido', 'value':docentes.apellido_re|default('')} %}
+                    {{ form_input(data) }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label('Teléfono Celular: ', 'Teléfono Celular', attributes) }}
+                    {% set attributes = {'class' : 'control-label'} %}
+                    {% set data = {'name':'celular', 'id' : 'celular', 'class' : 'form-control ', 'placeholder':'Teléfono Celular', 'value':docentes.celular|default('')} %}
+                    {{ form_input(data) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label('Teléfono Local: ', 'Teléfono Local', attributes) }}
+                    {% set attributes = {'class' : 'control-label'} %}
+                    {% set data = {'name':'telefono', 'id' : 'telefono', 'class' : 'form-control ', 'placeholder':'Teléfono Local', 'value':docentes.telefono|default('')} %}
+                    {{ form_input(data) }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Correo: <span id="msgEmail"></span></label>
+                    <input type="text" class="form-control" id="email" name="email" value="{{docentes.email|default('')}}" placeholder="Correo:">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <select name="estados_id" id="estados_id" class="form-control">
+                        <option value="0">Selecciona: </option>
+                        {% for estado in estados %}
+                            {% set selected = ''%}
+                            {% if estado.id == docentes.estados_id %}
+                                {% set selected = 'selected="selected"'%}
+                            {% endif %}
+                            <option {{selected}} value="{{estado.id}}">{{estado.estado}}</option>
+
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Municipio</label>
+                    <select name="municipios_id" id="municipios_id" class="form-control">
+                        <option value="0">Selecciona:</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Parroquia</label>
+                    <select name="parroquias_id" id="parroquias_id" class="form-control">
+                        <option value="0">Selecciona:</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Sector</label>
+                    <select name="sectores_id" id="sectores_id" class="form-control">
+                        <option value="0">Selecciona:</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <textarea rows="5" name="direccion" id="direccion" class="form-control" placeholder="Escriba nombre de Calle y N° de casa:">{{docentes.direccion|default('')}}</textarea>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-4 col-md-offset-4">
+                <button style="background-color: rgba(0, 0, 200, 0)" type="button" id="guardar" class="btn btn-block">
+                    <img width="150" src="{{ base_url('imagenes/botonGuardar.png') }}" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
     {{ form_close() }}
+
+    {% set data = {'type':'hidden', 'name':'municipio_id', 'id' : 'municipio_id',  'value':docentes.municipios_id|default('')} %}
+    {{ form_input(data) }}
+
+    {% set data = {'type':'hidden', 'name':'parroquia_id', 'id' : 'parroquia_id',  'value':docentes.parroquias_id|default('')} %}
+    {{ form_input(data) }}
+
+    {% set data = {'type':'hidden', 'name':'sector_id', 'id' : 'sector_id',  'value':docentes.sectores_id|default('')} %}
+    {{ form_input(data) }}
 
 {% endblock %}
 {% block script %}
@@ -153,7 +167,6 @@
                     alert('Debe ingresar Nombre de calle y N° de casa');
                     $('#direccion').focus();
                 }else{
-            //alert('Enviar');
             $('#frmdocente').submit();
         }
     });
@@ -200,5 +213,39 @@
                 }
             })
         });
+        var estados_id = $('#estados_id').find('option').filter(':selected').val();
+        if(estados_id > 0){
+            var municipio_id = $('#municipio_id').val();
+            var parroquia_id = $('#parroquia_id').val();
+            var sector_id = $('#sector_id').val();
+
+            $.get("/preescolar/municipios/Municipios/searchMunEst/" + estados_id, function (response) {
+                var $option = '';
+                $.each(response, function (i, municipios) {
+                    $option += '<option value="' + municipios.id + '">' + municipios.municipio + '</options>'
+                });
+                $("#municipios_id").append($option)
+                $("#municipios_id").val(municipio_id)
+            }, 'json');
+
+            $.get("/preescolar/parroquias/Parroquias/searchParMun/" + municipio_id, function (response) {
+                var $option = '';
+                $.each(response, function (i, parroquias) {
+                    $option += '<option value="' + parroquias.id + '">' + parroquias.parroquia + '</options>'
+                });
+                $("#parroquias_id").append($option)
+                $("#parroquias_id").val(parroquia_id)
+            }, 'json');
+
+
+            $.get("/preescolar/sectores/Sectores/searchSerPar/" + parroquia_id, function (response) {
+                var $option = '';
+                $.each(response, function (i, sectores) {
+                    $option += '<option value="' + sectores.id + '">' + sectores.sector + '</options>'
+                });
+                $("#sectores_id").append($option)
+                $("#sectores_id").val(sector_id)
+            }, 'json');
+        }
     </script>
 {% endblock %}

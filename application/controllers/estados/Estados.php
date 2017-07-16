@@ -7,8 +7,6 @@ class Estados extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('EstadosModel', 'estados');
-		$this->load->model("MunicipiosModel", 'municipios');
-		$this->load->model("ParroquiasModel", 'parroquias');
 	}
 
 	public function index()
@@ -23,8 +21,7 @@ class Estados extends CI_Controller
     {	
         $titulo = 'Registrar';
         $action = 'estados/Estados/guardar';
-        $estados  = $this->estados->listar();
-        $this->twig->display('estados/registro', compact('titulo', 'action', 'estados'));
+        $this->twig->display('estados/registro', compact('titulo', 'action'));
     }
 
     public function guardar()
@@ -34,12 +31,11 @@ class Estados extends CI_Controller
         if($resultado){
             redirect(base_url('estados/Estados'));
         }else{
-            $metodo = 'guardar';
             $error = 'error';
         	$action = 'estados/Estados/guardar';
             $url   = 'estados/Estados';
-            $titulo = 'Registro';
-            $this->twig->display('estados/registro', compact('titulo', 'metodo', 'error', 'url', 'action'));
+            $titulo = 'Registrar';
+            $this->twig->display('estados/registro', compact('titulo', 'error', 'url', 'action'));
         }
     }
 
@@ -47,7 +43,7 @@ class Estados extends CI_Controller
     {
         $id      = $id;
         $action = 'estados/Estados/editar';
-        $titulo = 'Modificar';
+        $titulo = 'Modificar Estado';
         $estados = $this->estados->buscar($id);
         $this->twig->display('estados/registro', compact('titulo', 'action', 'estados')); 
     }
@@ -57,7 +53,7 @@ class Estados extends CI_Controller
         $id = $this->input->post('id');
         $estado = $this->input->post('estado');
         $resultado = $this->estados->editar($id, $estado);
-        if($resultado){
+        if($resultado){ 
             redirect(base_url('estados/Estados'));
         }else{
             $metodo = 'guardar';

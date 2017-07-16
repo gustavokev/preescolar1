@@ -133,6 +133,7 @@
         </div>
     </div>
     {{ form_close() }}
+    
     {% set data = {'type':'hidden', 'name':'municipio_id', 'id' : 'municipio_id',  'value':representantes.municipios_id|default('')} %}
     {{ form_input(data) }}
 

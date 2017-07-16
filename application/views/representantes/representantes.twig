@@ -8,8 +8,8 @@
                         <th class="text-center"># ID</th>
                         <th class="text-center">Cedula</th>
                         <th class="text-center">Nombre y Apellido</th>
-                        <th class="text-center">Tlf. Celular</th>
                         <th class="text-center">Tlf. Local</th>
+                        <th class="text-center">Tlf. Celular</th>
                         <th class="text-center">Correo Electrónico</th>
 
                         <th class="text-center">Editar</th>
@@ -17,20 +17,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for lista in listar %}
+                    {% for representantes in listar %}
                         <tr>
                             <td>{{ "%02d"|format(loop.index)}}</td>
-                            <td>{{ lista.cedula|number_format(0, '', '.') }}</td>
-                            <td>{{ lista.nombre_re|capitalize}}  {{ lista.apellido_re|capitalize}}</td>
-                            <td>{{lista.telefono}}</td>
-                            <td>{{lista.celular}}</td>
-                            <td>{{lista.email}}</td>
+                            <td>{{ representantes.cedula|number_format(0, '', '.') }}</td>
+                            <td>{{ representantes.nombre_re|capitalize}}  {{ representantes.apellido_re|capitalize}}</td>
+                            <td>{{representantes.telefono}}</td>
+                            <td>{{representantes.celular}}</td>
+                            <td>{{representantes.email}}</td>
 
                             <td>
-                                <a class="btn bg-warning" href="{{ base_url('representantes/Representantes/modificar/' ~ lista.id) }}">Editar</a>
+                                <a class="btn bg-warning" href="{{ base_url('representantes/Representantes/modificar/' ~ representantes.id) }}">Editar</a>
                             </td>
                             <td>
-                                <a class="btn bg-danger" href="{{ base_url('representantes/Representantes/eliminar/' ~ lista.id) }}">Eliminar</a>
+                                <a class="btn bg-danger" href="{{ base_url('representantes/Representantes/eliminar/' ~ representantes.id) }}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}

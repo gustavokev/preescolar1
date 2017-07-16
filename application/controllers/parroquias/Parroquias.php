@@ -58,7 +58,8 @@ class Parroquias extends CI_Controller {
     {
         $id = $this->input->post('id');
         $parroquia = $this->input->post('parroquia');
-        $resultado = $this->parroquias->editar($id, $parroquia);
+        $municipios_id = $this->input->post('municipios_id');
+        $resultado = $this->parroquias->editar($id, $parroquia, $municipios_id);
         if($resultado){
             redirect(base_url('parroquias/parroquias'));
         }else{

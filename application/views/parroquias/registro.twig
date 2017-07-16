@@ -2,6 +2,10 @@
 {% block content %}
    {% set attributes = {'id' :'frmparroquia'} %}
     {{ form_open(base_url(action), attributes) }}
+        {% if  parroquias.id %}
+            {% set data = {'type':'hidden', 'name':'id', 'id' : 'id',  'value':parroquias.id|default('')} %}
+            {{ form_input(data) }}
+        {% endif %}
 
 <div class="form-body">
 
@@ -44,6 +48,9 @@
 
     {{ form_close() }}
 
+    {% set data = {'type':'hidden', 'name':'municipio_id', 'id' : 'municipio_id',  'value':parroquias.municipios_id|default('')} %}
+    {{ form_input(data) }}
+
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
@@ -52,6 +59,9 @@
                 if($('#parroquia').val() == ''){
                     alert('Debe ingresar la Parroquia');
                     $('#parroquia').focus();
+                }else if($('#municipios_id').val() == ''){
+                    alert('Debe ingresar el Municipio');
+                    $('#municipios_id').focus();
                 }else{
                     // alert('Enviar');
                     $('#frmparroquia').submit();

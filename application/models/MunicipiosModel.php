@@ -37,13 +37,15 @@ class MunicipiosModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('municipio');
-        $this->db->where('id', $id);
-        $query = $this->db->get($this->tabla);
+        $this->db->select('mu.id, mu.municipio, mu.estados_id');
+        $this->db->from($this->tabla.' AS mu');
+        $this->db->join('estados As es', 'mu.estados_id=es.id', 'inner');
+        $this->db->where('mu.id', $id);
+        $query = $this->db->get();
         return $query->row();
     }
 
-    public function editar($id, $municipio)
+    public function editar($id, $municipio, $estados_id)
     {
 
         $this->db->select('id');
@@ -54,7 +56,8 @@ class MunicipiosModel extends CI_Model {
             return FALSE;
         }
         $data = array(
-            'municipio' => $municipio
+            'municipio' => $municipio,
+            'estados_id' => $estados_id
             );
         $this->db->where('id', $id);
         $resultado = $this->db->update($this->tabla, $data);

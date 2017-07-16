@@ -16,12 +16,6 @@ class EstadosModel extends CI_Model {
 
         public function guardar($estado)
     {
-        $this->db->select('id');
-        $this->db->where('estado', $estado);
-        $query = $this->db->get($this->tabla);
-        if($query->num_rows()> 0){
-            return FALSE;
-        }
         $data = array(
             'estado' => $estado
             );

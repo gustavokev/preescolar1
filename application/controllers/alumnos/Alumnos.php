@@ -10,6 +10,7 @@ class Alumnos extends CI_Controller {
         $this->load->model('DocentesModel', 'datos');
         $this->load->model('RepresentantesModel', 'datos');
         $this->load->model('EstadosModel', 'estados');
+        $this->load->model('MunicipiosModel', 'municipios');
         $this->load->model('GradosModel', 'grados');
         $this->load->model('SeccionesModel', 'secciones');
         $this->load->model('AnioModel', 'anio');
@@ -31,7 +32,7 @@ class Alumnos extends CI_Controller {
         $estados = $this->estados->listar();
         $grados = $this->grados->listar();
         $secciones = $this->secciones->listar();
-        $this->twig->display('alumnos/detalles', compact('titulo', 'estados', 'grados', 'secciones', 'alumnos'));
+        $this->twig->display('alumnos/detalles', compact('titulo', 'estados', 'municipios', 'grados', 'secciones', 'alumnos'));
     }
 
 	public function registrar()
@@ -39,9 +40,7 @@ class Alumnos extends CI_Controller {
         $titulo = 'Registrar';
         $action = 'alumnos/Alumnos/guardar';
         $estados = $this->estados->listar();
-        $grados = $this->grados->listar();
-        $secciones = $this->secciones->listar();
-        $anios = $this->anio->listar();
+       
         $this->twig->display('alumnos/registro', compact('titulo', 'action', 'estados', 'grados', 'secciones', 'anios'));
     }
 
@@ -55,12 +54,9 @@ class Alumnos extends CI_Controller {
         $sexo = $this->input->post('sexo');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
-        $alumnos_datos_id = $this->input->post('alumnos_datos_id');
-        $grado_id = $this->input->post('grado_id');
-        $seccion_id = $this->input->post('seccion_id');
-        $anio_id = $this->input->post('anio_id');
-        $resultado = $this->alumnos->guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id, $alumnos_datos_id, $grado_id, $seccion_id, $anio_id);
-        if($resultado){
+        
+        $resultado = $this->alumnos->guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id);
+        if($resultado){ 
             redirect(base_url('alumnos/Alumnos'));
         }else{
             $error = 'error';
@@ -78,9 +74,8 @@ class Alumnos extends CI_Controller {
         $titulo = 'Modificar';
         $alumnos = $this->alumnos->buscar($id);
         $estados = $this->estados->listar();
-        $grados = $this->grados->listar();
-        $secciones = $this->secciones->listar();
-        $this->twig->display('alumnos/registro', compact('titulo', 'action', 'estados', 'grados', 'secciones', 'alumnos', 'url', 'error'));
+        
+        $this->twig->display('alumnos/registro', compact('titulo', 'action', 'estados', 'municipios', 'grados', 'secciones', 'alumnos'));
     }
 
     public function editar()
@@ -92,10 +87,8 @@ class Alumnos extends CI_Controller {
         $sexo = $this->input->post('sexo');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
-        $grado_id = $this->input->post('grado_id');
-        $seccion_id = $this->input->post('seccion_id');
-        $anio_id = $this->input->post('anio_id');
-        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id, $grado_id, $seccion_id, $anio_id);
+        
+        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id);
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{

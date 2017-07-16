@@ -33,8 +33,6 @@ class Representantes extends CI_Controller
 
     public function guardar()
     {
-
-
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');
@@ -65,10 +63,8 @@ class Representantes extends CI_Controller
         $action = 'representantes/Representantes/editar';
         $titulo = 'Modificar';
         $representantes = $this->representantes->buscar($id);
-
         $estados = $this->estados->listar();
         $municipios = $this->municipios->listar();
-        $parroquias = $this->parroquias->listar();
         $parroquias = $this->parroquias->listar();
         $sectores = $this->sectores->listar();
 

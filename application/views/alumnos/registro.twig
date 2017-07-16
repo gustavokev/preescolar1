@@ -3,6 +3,10 @@
 {% block content %}
    {% set attributes = {'id' :'frmalumno'} %}
     {{ form_open(base_url(action), attributes) }}
+        {% if  alumnos.id %}
+            {% set data = {'type':'hidden', 'name':'id', 'id' : 'id',  'value':alumnos.id|default('')} %}
+            {{ form_input(data) }}
+        {% endif %}
           
         <div class="form-body">
             <div class="row">
@@ -15,7 +19,6 @@
                     </div>
                 </div>
 
-                <span id="apellido_al"></span><div id="error"></div>
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ form_label('Apellido', 'Apellido', attributes) }}
@@ -46,19 +49,6 @@
                             <option value="masculino">masculino</option>
                         </select>
                     </div>
-                    {# {% macro select(name, options, selected) %}
-                        <div class="innerB">
-                            <select class="form-control" name="{{name}}">
-                            {% for option in options %}
-                              {% if option.value == selected %}
-                                <option value="{{option.value}}" selected>{{ option.value }}</option>
-                              {% else %}
-                                <option value="{{option.value}}">{{ option.value }}</option>
-                              {% endif %}
-                            {% endfor %}
-                            </select>
-                        </div>
-                    {% endmacro %} #}
                 </div>
             </div>
 
@@ -83,7 +73,7 @@
                     <div class="form-group">
                         <label class="control-label">Municipio</label>
                         <select name="municipios_id" id="municipios_id" class="form-control">
-                            <option value="{{alumnos.municipios_id|default('')}}">Selecciona: {{alumnos.municipio|default('')}}</option>
+                            <option value="0">Selecciona:</option>
                         </select>
                     </div>
                 </div>
@@ -98,6 +88,9 @@
             </div>
         </div>
     {{ form_close() }}
+
+    {% set data = {'type':'hidden', 'name':'municipio_id', 'id' : 'municipio_id',  'value':alumnos.municipios_id|default('')} %}
+    {{ form_input(data) }}
 
 {% endblock %}
 {% block script %}
@@ -156,6 +149,20 @@
                 }, 'json');
             }
         })
+
+        var estados_id = $('#estados_id').find('option').filter(':selected').val();
+        if(estados_id > 0){
+            var municipio_id = $('#municipio_id').val();
+
+            $.get("/preescolar/municipios/Municipios/searchMunEst/" + estados_id, function (response) {
+                var $option = '';
+                $.each(response, function (i, municipios) {
+                    $option += '<option value="' + municipios.id + '">' + municipios.municipio + '</options>'
+                });
+                $("#municipios_id").append($option)
+                $("#municipios_id").val(municipio_id)
+            }, 'json');
+        }
     });
 </script>
 {% endblock %}

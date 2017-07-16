@@ -8,6 +8,7 @@ class ParroquiasModel extends CI_Model {
     {
         parent::__construct();
     }
+    
     public function listar()
     {
         $this->db->select('pa.id, pa.parroquia, mu.municipio');
@@ -36,15 +37,16 @@ class ParroquiasModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('parroquia');
-        $this->db->where('id', $id);
+        $this->db->select('pa.id, pa.parroquia, pa.municipios_id');
+        $this->db->from($this->tabla.' AS pa');
+        $this->db->join('municipios As mu', 'pa.municipios_id=mu.id', 'inner');
+        $this->db->where('pa.id', $id);
         $query = $this->db->get($this->tabla);
         return $query->row();
     }
 
-    public function editar($id, $parroquia)
+    public function editar($id, $parroquia, $municipios_id)
     {
-
         $this->db->select('id');
         $this->db->where('id!=', $id);
         $this->db->where('parroquia', $parroquia);
@@ -53,7 +55,8 @@ class ParroquiasModel extends CI_Model {
             return FALSE;
         }
         $data = array(
-            'parroquia' => $parroquia
+            'parroquia' => $parroquia,
+            'municipios_id' => $municipios_id
             );
         $this->db->where('id', $id);
         $resultado = $this->db->update($this->tabla, $data);

@@ -63,7 +63,8 @@ class Municipios extends CI_Controller {
     {
         $id = $this->input->post('id');
         $municipio = $this->input->post('municipio');
-        $resultado = $this->municipios->editar($id, $municipio);
+        $estados_id = $this->input->post('estados_id');
+        $resultado = $this->municipios->editar($id, $municipio, $estados_id);
         if($resultado){
             redirect(base_url('municipios/Municipios'));
         }else{
