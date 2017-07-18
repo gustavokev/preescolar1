@@ -35,11 +35,11 @@ CREATE TABLE `alumnos` (
   PRIMARY KEY (`id`),
   KEY `datos_id` (`alumnos_datos_id`),
   KEY `gsa_id` (`grado_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `alumnos` */
 
-insert  into `alumnos`(`id`,`nombre_al`,`apellido_al`,`fecha_nac`,`sexo`,`alumnos_datos_id`,`estados_id`,`municipios_id`,`grado_id`,`seccion_id`,`anio_id`) values (1,'kevin','acevedo','2009-05-08','masculino',1,1,10,1,1,1),(2,'diana','alahe','2009-07-14','f',2,1,12,2,2,2),(3,'luger','arcila','2009-04-14','m',3,1,3,3,3,3),(4,'jose','barragan','2009-12-08','f',4,1,15,4,4,1),(5,'naiska','blanco','2009-10-19','f',5,1,10,3,1,2),(6,'edglimar','castellano','2009-07-05','f',6,1,2,5,2,3),(7,'josneily','cisneros','2009-08-13','femenino',7,1,4,6,3,1),(8,'cesar','espinoza','2009-11-06','masculino',8,1,7,4,4,2),(9,'yhon','garcia','2009-04-20','m',9,1,9,2,1,3),(10,'jeison','guerrero','2009-10-03','masculino',10,1,5,3,2,1),(11,'abraham','lopez','2009-07-27','masculino',11,1,11,5,3,2),(12,'gust','ace','2003-04-04','masculino',12,1,1,9,4,3),(18,'juan','menelao','1978-10-05','m',13,1,5,7,1,1),(21,'hola','pachec','2003-04-04','m',14,2,23,8,2,2),(22,'filiberto','leva','1981-03-12','masculino',15,1,9,6,3,3),(23,'aba','sosa','2003-04-04','femenino',16,2,22,23,4,2),(24,'fernand','flo','1974-03-12','masculino',16,1,15,22,1,3),(25,'lili','fer','1981-03-12','femenino',8,1,15,5,3,2),(26,'sali','da','2003-04-04','femenino',2,2,23,7,2,2);
+insert  into `alumnos`(`id`,`nombre_al`,`apellido_al`,`fecha_nac`,`sexo`,`alumnos_datos_id`,`estados_id`,`municipios_id`,`grado_id`,`seccion_id`,`anio_id`) values (1,'kevin','acevedo','2009-05-08','masculino',1,1,10,1,1,1),(2,'diana','alahe','2009-07-14','f',2,1,12,2,2,2),(3,'luger','arcila','2009-04-14','m',3,1,3,3,3,3),(4,'jose','barragan','2009-12-08','f',4,1,15,4,4,1),(5,'naiska','blanco','2009-10-19','f',5,1,10,3,1,2),(6,'edglimar','castellano','2009-07-05','f',6,1,2,5,2,3),(7,'josneily','cisneros','2009-08-13','femenino',7,1,4,6,3,1),(8,'cesar','espinoza','2009-11-06','masculino',8,1,7,4,4,2),(9,'yhon','garcia','2009-04-20','m',9,1,9,2,1,3),(10,'jeison','guerrero','2009-10-03','masculino',10,1,5,3,2,1),(11,'abraham','lopez','2009-07-27','masculino',11,1,11,5,3,2),(12,'gust','ace','2003-04-04','masculino',12,1,1,9,4,3),(18,'juan','menelao','1978-10-05','m',13,1,5,7,1,1),(21,'hola','pachec','2003-04-04','m',14,2,23,8,2,2),(22,'filiberto','leva','1981-03-12','masculino',15,1,9,6,3,3),(23,'aba','sosa','2003-04-04','femenino',16,2,22,23,4,2),(24,'fernand','flo','1974-03-12','masculino',16,1,15,22,1,3),(25,'lili','fer','1981-03-12','femenino',8,1,15,5,3,2),(26,'sali-ha','da','2003-04-04','femenino',2,2,23,7,2,2),(27,'fredy','leva','1978-02-24','masculino',NULL,1,10,NULL,NULL,NULL),(28,'pedro','loco','2003-04-04','masculino',NULL,2,22,NULL,NULL,NULL),(29,'gustavo','acevedo','2003-04-04','masculino',7,1,8,3,4,2);
 
 /*Table structure for table `alumnos_datos` */
 
@@ -101,20 +101,18 @@ CREATE TABLE `datos` (
   `apellido_re` varchar(30) DEFAULT NULL,
   `telefono` varchar(30) DEFAULT NULL,
   `celular` varchar(30) DEFAULT NULL,
-  `estatus` varchar(11) DEFAULT NULL,
   `direccion` text,
   `email` varchar(30) DEFAULT NULL,
   `estados_id` int(11) DEFAULT NULL,
   `municipios_id` int(11) DEFAULT NULL,
   `parroquias_id` int(11) DEFAULT NULL,
-  `alumnos_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `alumnos_id` (`alumnos_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `sectores_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `datos` */
 
-insert  into `datos`(`id`,`cedula`,`nombre_re`,`apellido_re`,`telefono`,`celular`,`estatus`,`direccion`,`email`,`estados_id`,`municipios_id`,`parroquias_id`,`alumnos_id`) values (1,13553614,'gustavo','acevedo meza','0412-3434919',NULL,'r2','La Pica calle pasaje Maya casa #3',NULL,1,10,1,1),(2,18490320,'neilly','sanchez','0412-1347784',NULL,'r1','Urb. La Croquera, Sector O, Fila # 15, casa # 02. ',NULL,1,10,2,1),(3,12170190,'yuleny','ochoa','0412-4798716',NULL,'r1','C/ Jose Felix Ribas, casa # 24, El Libertador. ',NULL,1,10,3,2),(4,15130921,'arnaldo','alahe','',NULL,'r2',' 	C/ Jose Felix Ribas, casa # 24, El Libertador. ',NULL,1,10,4,2),(5,17577629,'deiglis','sanchez','0424-3470446',NULL,'r1','C/ Tamanaco # 15 La Atascosa Pasaje 1.',NULL,1,10,5,3),(6,12611496,'luger','arcila','',NULL,'r2','C/ Tamanaco # 15 La Atascosa Pasaje 1.',NULL,1,10,6,3),(7,15084387,'Lilianets','Figueroa','0412-5025196',NULL,'r1','C/Zamora # 11 Centro I Palo negro. ',NULL,1,10,7,4),(8,10754370,'yosmar','barragan','',NULL,'r2','C/Zamora # 11 Centro I Palo negro.',NULL,1,10,8,4),(9,12612323,'carla','herrera','0416-3457085',NULL,'r1','C/ Miranda # 38-1 El Libertador.',NULL,1,10,9,5),(10,13769232,'julio','blanco',NULL,NULL,'r2','C/ Miranda # 38-1 El Libertador.',NULL,1,10,10,5),(11,123,'','representante 1','','','r3','                                                                                ','',1,10,14,1),(12,456,'','representante 2','','','r3','                                                ','',1,10,8,2),(13,654,'','representante 3','','','r3','                                                ','',1,10,17,3),(14,11,'docente1','docente1','55-5-rriente','','d1','                                                ','',1,10,12,7),(15,12,'docente2','docente2','','','d2','ninguna','',1,10,19,8),(16,13,'docente3','docente3','','','d3','                ','',1,10,4,8),(17,0,'','','','','','                ','',0,0,0,NULL);
+insert  into `datos`(`id`,`cedula`,`nombre_re`,`apellido_re`,`telefono`,`celular`,`direccion`,`email`,`estados_id`,`municipios_id`,`parroquias_id`,`sectores_id`) values (2,18490320,'neilly','sanchez','0243-2760473','0412-1347784','Urb. La Croquera, Sector O, Fila # 15, casa # 02. ','neillysz25@hotmail.com',1,10,23,6),(3,12170190,'yuleny','ochoa','0412-4798716','555 rriente','C/ Jose Felix Ribas, casa # 24, El Libertador. ','yuleni@gmail.com',1,10,23,10),(4,15130921,'arnaldo','alahe','','516146654',' 	C/ Jose Felix Ribas, casa # 24, El Libertador. ','',1,10,22,15),(5,17577629,'deiglis','sanchez','0424-3470446',NULL,'C/ Tamanaco # 15 La Atascosa Pasaje 1.',NULL,1,10,5,4),(6,12611496,'luger','arcila','',NULL,'C/ Tamanaco # 15 La Atascosa Pasaje 1.',NULL,1,10,6,5),(7,15084387,'Lilianets','Figueroa','0412-5025196',NULL,'C/Zamora # 11 Centro I Palo negro. ',NULL,1,10,7,6),(8,10754370,'yosmar','barragan','',NULL,'C/Zamora # 11 Centro I Palo negro.',NULL,1,10,8,7),(9,12612323,'carla','herrera','0416-3457085',NULL,'C/ Miranda # 38-1 El Libertador.',NULL,1,10,9,8),(10,13769232,'julio','blanco','5316146','','C/ Miranda # 38-1 El Libertador.','vkk@gmail.com',1,10,23,32),(15,123,'holis','holota','315','2133','hola','gustavoacevedo24@gmail.com',1,10,13,10),(19,511311361,'jg','ghjg','2574','75','maracay','gustavoacevedo@gmail.com',1,10,23,11),(20,13553614,'gustavo','acevedo','0243-2675294','0412-3434919','calle pasaje maya, casa n° 3','gustavoacevedo24@hotmail.com',1,10,23,6);
 
 /*Table structure for table `direccion` */
 
@@ -142,13 +140,13 @@ DROP TABLE IF EXISTS `estados`;
 
 CREATE TABLE `estados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `estados` */
 
-insert  into `estados`(`id`,`estado`) values (1,'Aragua'),(2,'Carabobo'),(3,'Miranda'),(4,'Cojedes'),(5,'Amazonas '),(6,'Apure'),(7,'Anzoategui'),(8,'Barinas'),(9,'Bolivar'),(10,'Delta-Amacuro'),(11,'Dependencias-Federales'),(12,'Distrito-Capital'),(13,'Falcon'),(14,'Lara'),(15,'Merida'),(16,'Monagas'),(17,'Nueva-Esparta'),(18,'Portuguesa'),(19,'Sucre'),(20,'Tachira'),(21,'Trujillo'),(22,'Vargas'),(23,'Yaracuy'),(24,'Zulia'),(25,'Guarico');
+insert  into `estados`(`id`,`estado`) values (1,'Aragua'),(2,'Carabobo'),(3,'Miranda'),(4,'Cojedes'),(5,'Amazonas '),(6,'Apure'),(7,'Anzoategui'),(8,'Barinas'),(9,'Bolivar'),(10,'Delta Amacuro'),(11,'Dependencias Federales'),(12,'Distrito Capital'),(13,'Falcon'),(14,'Lara'),(15,'Merida'),(16,'Monagas'),(17,'Nueva Esparta'),(18,'Portuguesa'),(19,'Sucre'),(20,'Tachira'),(21,'Trujillo'),(22,'Vargas'),(23,'Yaracuy'),(24,'Zulia'),(25,'Guarico'),(26,'mi estado');
 
 /*Table structure for table `estatus` */
 
@@ -228,15 +226,15 @@ DROP TABLE IF EXISTS `parroquias`;
 CREATE TABLE `parroquias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `municipios_id` int(11) DEFAULT NULL,
-  `parroquia` varchar(50) DEFAULT NULL,
+  `parroquia` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `ciudad_municipio_id` (`municipios_id`),
-  CONSTRAINT `parroquias_municipios_FK` FOREIGN KEY (`municipios_id`) REFERENCES `municipios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+  KEY `municipios_id` (`municipios_id`),
+  CONSTRAINT `parroquias_ibfk_1` FOREIGN KEY (`municipios_id`) REFERENCES `municipios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 /*Data for the table `parroquias` */
 
-insert  into `parroquias`(`id`,`municipios_id`,`parroquia`) values (1,10,'Barrio Carlos Andrés Pérez'),(2,10,'Barrio Ezequiel Zamora'),(3,10,'Barrio La Frontera'),(4,10,'Barrio Mata Verde'),(5,10,'Barrio Ocumarito Norte'),(6,10,'Centro La Pica'),(7,10,'	Malariología Antonio Aranguren'),(8,10,'Sector 10 de Diciembre'),(9,10,'Sector 1ro de Mayo'),(10,10,'Sector Bello Monte'),(11,10,'Sector El Triángulo'),(12,10,'Sector La Carrizalera'),(13,10,'Sector La Cuarta'),(14,10,'Sector La Frontera'),(15,10,'Sector La Quinta'),(16,10,'Sector Las animas I'),(17,10,'Sector Las animas II'),(18,10,'Sector Las Vegas'),(19,10,'Sector Los Hornos I'),(20,10,'Sector Los Hornos II'),(21,10,'Sector Los Hornos III'),(22,10,'Sector Los Hornos IV'),(23,10,'Sector Los Hornos V'),(24,10,'Sector Los Hornos VI'),(25,10,'Sector Los Hornos VII'),(26,10,'Sector Los Hornos VIII'),(27,10,'Sector Los Hornos IX'),(28,10,'Sector Los Hornos X'),(29,10,'Sector Los Mangos'),(30,10,'Sector Los Naranjos'),(31,10,'Sector Ocumarito'),(32,10,'Sector San Martín'),(33,10,'Sector Santa Rosalía'),(34,10,'Urbanización Cuatricentenario'),(35,10,'Urbanización El Encanto'),(36,10,'Urbanización El Orticeño'),(37,10,'Urbanización La Esperanza'),(38,10,'Urbanización La Macarena I'),(39,10,'Urbanización Los Libertadores'),(40,10,'Urbanización Los Lirios'),(41,10,'Urbanización Palo Negro I'),(42,10,'	Urbanización Palo Negro II'),(43,10,'Urbanización San Miguel'),(44,10,'Urbanización Santa Rosalía'),(45,10,'Barrio Libertador'),(46,10,'Barrio Los Hornos'),(47,10,'Barrio Los Ruices'),(48,10,'Barrio Santa Ana'),(49,10,'Base Aérea Libertador'),(50,10,'Centro Palo Negro'),(51,10,'Hacienda La Coromoto'),(52,10,'Sector 8'),(53,10,'Sector Camburito'),(54,10,'Sector El Jaral'),(55,10,'Sector La Atascosa'),(56,10,'Sector La Granja Coromoto'),(57,10,'Sector Las Malvinas'),(58,10,'Sector Los Jabillos'),(59,10,'Urbanización Araguaney'),(60,10,'Urbanización Bael'),(61,10,'Urbanización La Blanquera'),(62,10,'Urbanización La Croquera'),(63,10,'Urbanización La Ovallera'),(64,10,'Urbanización Las Trinitarias'),(65,10,'Urbanización Los Robles'),(66,10,'Urbanización Los Tulipanes'),(67,10,'Urbanización San Antonio');
+insert  into `parroquias`(`id`,`municipios_id`,`parroquia`) values (1,8,'Parroquia Bolívar'),(2,17,'Parroquia Camatagua'),(3,17,'Parroquia Carmen de Cura'),(4,9,'Santa Rita'),(5,9,'Parroquia Francisco de Miranda'),(6,9,'Parroquia Moseñor Feliciano González'),(7,3,'Pedro José Ovalles'),(8,3,'Joaquín Crespo'),(9,3,'José Casanova Godoy'),(10,3,'Madre María de San José'),(11,3,'Andrés Eloy Blanco'),(12,3,'Los Tacarigua'),(13,3,'Las Delicias'),(14,3,'Choroní'),(15,6,'Parroquia Santa Cruz'),(16,11,'José Félix Ribas'),(17,11,'Castor Nieves Ríos'),(18,11,'Las Guacamayas'),(19,11,'Pao de Zárate'),(20,11,'Parroquia Zuata'),(21,12,'Parroquia José Rafael Revenga'),(22,10,'Parroquia Palo Negro'),(23,10,'Parroquia San Martín de Porres'),(24,1,'Parroquia El Limón'),(25,1,'Parroquia Caña de Azúcar'),(27,5,'Parroquia Ocumare de la Costa'),(28,16,'Parroquia San Casimiro'),(29,16,'Parroquia Güiripa'),(30,16,'Parroquia Ollas de Caramacate'),(31,16,'Parroquia Valle Morín'),(32,15,'Parroquia San Sebastían'),(33,2,'Parroquia Turmero'),(34,2,'Parroquia Arevalo Aponte'),(35,2,'Parroquia Chuao'),(36,2,'Parroquia Samán de Güere'),(37,2,'Alfredo Pacheco Miranda'),(38,13,'Parroquia Santos Michelena'),(39,13,'Parroquia Tiara'),(40,7,'Parroquia Cagua'),(41,7,'Parroquia Bella Vista'),(42,4,'Parroquia Tovar'),(43,18,'Parroquia Urdaneta'),(44,18,'Parroquia Las Peñitas'),(45,18,'Parroquia San Francisco de Cara'),(46,18,'Parroquia Taguay'),(47,14,'Parroquia Villa de Cura'),(48,14,'Parroquia Magdaleno'),(49,14,'Parroquia San Francisco de Asís'),(50,14,'Parroquia Valles de Tucutunemo'),(51,14,'Parroquia Augusto Mijares');
 
 /*Table structure for table `secciones` */
 
@@ -251,6 +249,23 @@ CREATE TABLE `secciones` (
 /*Data for the table `secciones` */
 
 insert  into `secciones`(`id`,`seccion`) values (1,'a'),(2,'b'),(3,'c'),(4,'d');
+
+/*Table structure for table `sectores` */
+
+DROP TABLE IF EXISTS `sectores`;
+
+CREATE TABLE `sectores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parroquias_id` int(11) DEFAULT NULL,
+  `sector` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ciudad_municipio_id` (`parroquias_id`),
+  CONSTRAINT `sectores_ibfk_1` FOREIGN KEY (`parroquias_id`) REFERENCES `parroquias` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sectores` */
+
+insert  into `sectores`(`id`,`parroquias_id`,`sector`) values (1,22,'Barrio Carlos Andrés Pérez'),(2,22,'Barrio Ezequiel Zamora'),(3,22,'Barrio La Frontera'),(4,22,'Barrio Mata Verde'),(5,22,'Barrio Ocumarito Norte'),(6,23,'Centro La Pica'),(7,23,'	Malariología Antonio Aranguren'),(8,22,'Sector 10 de Diciembre'),(9,22,'Sector 1ro de Mayo'),(10,23,'Sector Bello Monte'),(11,22,'Sector El Triángulo'),(12,22,'Sector La Carrizalera'),(13,22,'Sector La Cuarta'),(14,22,'Sector La Frontera'),(15,22,'Sector La Quinta'),(16,23,'Sector Las animas I'),(17,23,'Sector Las animas II'),(18,22,'Sector Las Vegas'),(19,22,'Sector Los Hornos I'),(20,22,'Sector Los Hornos II'),(21,22,'Sector Los Hornos III'),(22,22,'Sector Los Hornos IV'),(23,22,'Sector Los Hornos V'),(24,22,'Sector Los Hornos VI'),(25,22,'Sector Los Hornos VII'),(26,22,'Sector Los Hornos VIII'),(27,22,'Sector Los Hornos IX'),(28,22,'Sector Los Hornos X'),(29,22,'Sector Los Mangos'),(30,22,'Sector Los Naranjos'),(31,22,'Sector Ocumarito'),(32,23,'Sector San Martín'),(33,23,'Sector Santa Rosalía'),(34,23,'Urbanización Cuatricentenario'),(35,22,'Urbanización El Encanto'),(36,22,'Urbanización El Orticeño'),(37,22,'Urbanización La Esperanza'),(38,22,'Urbanización La Macarena I'),(39,22,'Urbanización Los Libertadores'),(40,22,'Urbanización Los Lirios'),(41,22,'Urbanización Palo Negro I'),(42,22,'	Urbanización Palo Negro II'),(43,22,'Urbanización San Miguel'),(44,22,'Urbanización Santa Rosalía'),(45,22,'Barrio Libertador'),(46,22,'Barrio Los Hornos'),(47,22,'Barrio Los Ruices'),(48,22,'Barrio Santa Ana'),(49,22,'Base Aérea Libertador'),(50,22,'Centro Palo Negro'),(51,22,'Hacienda La Coromoto'),(52,22,'Sector 8'),(53,22,'Sector Camburito'),(54,22,'Sector El Jaral'),(55,22,'Sector La Atascosa'),(56,22,'Sector La Granja Coromoto'),(57,22,'Sector Las Malvinas'),(58,22,'Sector Los Jabillos'),(59,22,'Urbanización Araguaney'),(60,22,'Urbanización Bael'),(61,22,'Urbanización La Blanquera'),(62,22,'Urbanización La Croquera'),(63,22,'Urbanización La Ovallera'),(64,22,'Urbanización Las Trinitarias'),(65,22,'Urbanización Los Robles'),(66,22,'Urbanización Los Tulipanes'),(67,22,'Urbanización San Antonio');
 
 /*Table structure for table `users` */
 
@@ -300,11 +315,11 @@ CREATE TABLE `usuarios` (
   `codigo` varchar(50) DEFAULT NULL,
   `estado` enum('0','1') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`nombre`,`correo`,`usuario`,`pass`,`codigo`,`estado`) values (2,'gustavo','gustavoacevedo24@gmail.com','gustavoace','123456','123456','0');
+insert  into `usuarios`(`id`,`nombre`,`correo`,`usuario`,`pass`,`codigo`,`estado`) values (2,'gustavo','gustavoacevedo24@gmail.com','gustavoace','123456','123456','0'),(3,'neilly ','neillysz25@gmail.com','neillysz','123456','123456','0');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
